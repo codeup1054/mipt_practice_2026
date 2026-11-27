@@ -72,7 +72,14 @@
 
 Скрипт или инструкцию: переключение модели, обработка отказа, сохранение журналов и сравнение ответов на едином наборе задач.
 
-<span class="chip">**CLI** · интерфейс командной строки</span> <span class="chip">**Desktop** · настольное приложение</span> <span class="chip">**API** · программный интерфейс</span> <span class="chip">**providers** · провайдеры моделей</span> <span class="chip">**fallback** · резервный вариант</span> <span class="chip">**retry** · повтор запроса</span> <span class="chip">**rate limit** · ограничение частоты</span> <span class="chip">**prompt** · текст задания</span>
+- **CLI** — интерфейс командной строки.
+- **Desktop** — настольное приложение.
+- **API** — программный интерфейс.
+- **providers** — провайдеры моделей.
+- **fallback** — резервный вариант.
+- **retry** — повтор запроса.
+- **rate limit** — ограничение частоты.
+- **prompt** — текст задания.
 
 ## 3. Экономика токенов (token economics)
 
@@ -99,7 +106,7 @@
 
 **Последовательность исследования:** наблюдение → проблема и цель → проверяемый вопрос → гипотеза → дизайн и выборка → измерение и контроль качества (QC, quality control) → анализ → выводы с ограничениями → воспроизводимость.
 
-<span class="chip">наблюдение</span><span class="chip">проблема</span> <span class="chip">вопрос</span><span class="chip">гипотеза</span> <span class="chip">дизайн</span><span class="chip">данные и QC</span> <span class="chip">анализ</span><span class="chip">выводы</span> <span class="chip">ограничения</span><span class="chip">воспроизводимость</span>
+> наблюдение → проблема → вопрос → гипотеза → дизайн → данные и QC → анализ → выводы → ограничения → воспроизводимость
 
 ### Методики, которые можно указать
 
@@ -118,7 +125,19 @@
 
 ## 5. Хранилище кода (repository) и документация
 
-project/ ├─ README.md описание и команда запуска ├─ spec.md спецификация (specification) ├─ PASSPORT.md паспорт данных ├─ notebooks/ исследование ├─ src/ или tools/ скрипты и инструменты автоматизации (tools) ├─ tests/ тесты ├─ out/ metrics.json, figures, runs ├─ report/ report.html и presentation ├─ CHANGELOG.md журнал изменений └─ .gitignore исключения: данные, ключи, мусор
+```text
+project/
+├─ README.md          описание и команда запуска
+├─ spec.md            спецификация (specification)
+├─ PASSPORT.md        паспорт данных
+├─ notebooks/         исследование
+├─ src/ или tools/    скрипты и инструменты автоматизации (tools)
+├─ tests/             тесты
+├─ out/               metrics.json, figures, runs
+├─ report/            report.html и presentation
+├─ CHANGELOG.md       журнал изменений
+└─ .gitignore         исключения: данные, ключи, мусор
+```
 
 ### Что проверяет рецензент
 
