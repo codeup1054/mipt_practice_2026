@@ -5,7 +5,7 @@
 
 ## С чего начать
 
-1. **Портфолио и резюме** — `portfolio/STUDENT_PORTFOLIO_MEMO.html`.
+1. **Портфолио и резюме** — `portfolio/STUDENT_PORTFOLIO_MEMO.html` · `STUDENT_PORTFOLIO_MEMO.md`.
    Что предъявить: команда навыков (skills), OpenCode, экономика токенов
    (token economics), научный метод, хранилище кода (repository), готовые формулировки.
 2. **Гид T1** — `01_opendata_research/T1-MEMO_NOTEBOOK_GUIDE.html` · `T1-MEMO_NOTEBOOK_GUIDE.md`.
@@ -19,7 +19,7 @@
 
 | Папка | Содержимое |
 |---|---|
-| `portfolio/` | памятка «что предъявить в резюме и портфолио» |
+| `portfolio/` | памятка «что предъявить в резюме и портфолио»: HTML и Markdown |
 | `01_opendata_research/` | `REFERENCE_ANALYSIS.ipynb`, гид, `scripts/`, `out/` с графиками, `skills/` — 10 примеров |
 | `02_nutrivision/` | `NUT02_REFERENCE.ipynb`, гид, каталог блюд, фото, навык (skill), `spec.md`, метрики, графики, `skills/` — 10 примеров |
 
