@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-09_outlier-boxplot
 code: T2-MEMO-SKL-09
 theme: T2
-description: Показать разброс и объяснить выбросы.
+description: "Показать разброс и объяснить выбросы."
 version: 1.0.0
 inputs: [err_pct по вариантам]
 outputs: [боксплот, список выбросов]

@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-01_dish-catalog
 code: T2-MEMO-SKL-01
 theme: T2
-description: Собрать единый каталог блюд с фото, весом, КБЖУ и составом.
+description: "Собрать единый каталог блюд с фото, весом, КБЖУ и составом."
 version: 1.0.0
 inputs: [фото, вес, эталонные КБЖУ]
 outputs: [food_catalog.json, PASSPORT.md]

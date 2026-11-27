@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-07_metrics-mae-match
 code: T2-MEMO-SKL-07
 theme: T2
-description: Посчитать ошибку калорий и полноту ингредиентов по блюдам.
+description: "Посчитать ошибку калорий и полноту ингредиентов по блюдам."
 version: 1.0.0
 inputs: [predictions.csv, эталон]
 outputs: [metrics.json, сводка]

@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-06_run-matrix
 code: T2-MEMO-SKL-06
 theme: T2
-description: Сравнить модели и чаты на одном каталоге и промпте.
+description: "Сравнить модели и чаты на одном каталоге и промпте."
 version: 1.0.0
 inputs: [каталог, промпт, модели, чаты]
 outputs: [out/runs/<variant>/predictions.csv]

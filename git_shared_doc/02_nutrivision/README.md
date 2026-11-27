@@ -16,12 +16,13 @@ t-критерий, боксплот, тепловая карта ошибок �
 | `processed/PASSPORT.md` | источники, единицы, лицензии, правила каталога |
 | `processed/photos/` | 8 фото блюд + `CREDITS.md` |
 | `skill/SKILL.md` | навык (skill) распознавания v2 и CHANGELOG |
-| `T2-MEMO_NOTEBOOK_GUIDE.html` | пошаговый гид по ноутбуку |
+| `T2-MEMO_NOTEBOOK_GUIDE.html` | пошаговый интерактивный гид |
+| `T2-MEMO_NOTEBOOK_GUIDE.md` | Markdown-версия гида |
 | `stages_nut02.json` | методика гида: шаги, план, бейджи |
 | `skills/` | 10 примеров навыков (skills) |
 | `out/` | `metrics.json`, `factors.csv`, `predictions_scored.csv`, `runs_demo.csv`, 6 графиков |
 
-Гид по ноутбуку: [`T2-MEMO_NOTEBOOK_GUIDE.html`](T2-MEMO_NOTEBOOK_GUIDE.html).
+Гид по ноутбуку: [HTML](T2-MEMO_NOTEBOOK_GUIDE.html) · [Markdown](T2-MEMO_NOTEBOOK_GUIDE.md).
 
 ## Примеры навыков (skills)
 

@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-02_portion-check
 code: T2-MEMO-SKL-02
 theme: T2
-description: Сверить сумму веса компонентов с весом порции.
+description: "Сверить сумму веса компонентов с весом порции."
 version: 1.0.0
 inputs: [components[], вес порции]
 outputs: [флаг расхождения, notes]

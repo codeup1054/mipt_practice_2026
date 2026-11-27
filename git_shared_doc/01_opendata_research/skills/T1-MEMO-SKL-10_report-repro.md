@@ -2,7 +2,7 @@
 name: T1-MEMO-SKL-10_report-repro
 code: T1-MEMO-SKL-10
 theme: T1
-description: Собрать результат, который можно проверить и повторить.
+description: "Собрать результат, который можно проверить и повторить."
 version: 1.0.0
 inputs: [ноутбук, метрики, графики]
 outputs: [report.html, README, чек-лист]

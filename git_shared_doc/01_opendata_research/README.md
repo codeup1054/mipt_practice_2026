@@ -13,10 +13,11 @@
 | `scripts/` | конвертация BRFSS/NHANES/AI4FoodDB, разведка переменных, пилот |
 | `out/figures/` | 14 графиков из эталонного прогона |
 | `out/*.json`, `out/*.csv` | манифесты, сводки, важности блоков |
-| `T1-MEMO_NOTEBOOK_GUIDE.html` | пошаговый гид по ноутбуку |
+| `T1-MEMO_NOTEBOOK_GUIDE.html` | пошаговый интерактивный гид |
+| `T1-MEMO_NOTEBOOK_GUIDE.md` | Markdown-версия гида |
 | `skills/` | 10 примеров навыков (skills) |
 
-Гид по ноутбуку: [`T1-MEMO_NOTEBOOK_GUIDE.html`](T1-MEMO_NOTEBOOK_GUIDE.html).
+Гид по ноутбуку: [HTML](T1-MEMO_NOTEBOOK_GUIDE.html) · [Markdown](T1-MEMO_NOTEBOOK_GUIDE.md).
 
 ## Примеры навыков (skills)
 

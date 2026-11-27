@@ -2,7 +2,7 @@
 name: T1-MEMO-SKL-09_clustering-profile
 code: T1-MEMO-SKL-09
 theme: T1
-description: Найти устойчивые группы и описать их профиль, а не только номер.
+description: "Найти устойчивые группы и описать их профиль, а не только номер."
 version: 1.0.0
 inputs: [стандартизованные признаки]
 outputs: [k, silhouette, профили, имена групп]

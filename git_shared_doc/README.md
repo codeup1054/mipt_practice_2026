@@ -8,9 +8,9 @@
 1. **Портфолио и резюме** — `portfolio/STUDENT_PORTFOLIO_MEMO.html`.
    Что предъявить: команда навыков (skills), OpenCode, экономика токенов
    (token economics), научный метод, хранилище кода (repository), готовые формулировки.
-2. **Гид T1** — `01_opendata_research/T1-MEMO_NOTEBOOK_GUIDE.html`.
+2. **Гид T1** — `01_opendata_research/T1-MEMO_NOTEBOOK_GUIDE.html` · `T1-MEMO_NOTEBOOK_GUIDE.md`.
    12 шагов исследования на данных о здоровье.
-3. **Гид T2** — `02_nutrivision/T2-MEMO_NOTEBOOK_GUIDE.html`.
+3. **Гид T2** — `02_nutrivision/T2-MEMO_NOTEBOOK_GUIDE.html` · `T2-MEMO_NOTEBOOK_GUIDE.md`.
    9 шагов нутриентного анализа: навык (skill), прогоны, MAE %, критерий Стьюдента
    (t-test), вывод.
 4. **Ноутбуки** — `01_opendata_research/` и `02_nutrivision/`. Гиды и ноутбуки читаются вместе.

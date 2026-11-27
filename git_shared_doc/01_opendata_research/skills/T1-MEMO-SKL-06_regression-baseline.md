@@ -2,7 +2,7 @@
 name: T1-MEMO-SKL-06_regression-baseline
 code: T1-MEMO-SKL-06
 theme: T1
-description: Сравнить модель с простой базовой линией и проверить утечку.
+description: "Сравнить модель с простой базовой линией и проверить утечку."
 version: 1.0.0
 inputs: [признаки, целевая переменная, разбиение]
 outputs: [AUC, коэффициенты, важности]

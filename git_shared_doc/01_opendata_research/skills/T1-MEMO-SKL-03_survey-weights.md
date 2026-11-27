@@ -2,7 +2,7 @@
 name: T1-MEMO-SKL-03_survey-weights
 code: T1-MEMO-SKL-03
 theme: T1
-description: Учесть дизайн выборки: веса, страты и кластеры.
+description: "Учесть дизайн выборки: веса, страты и кластеры."
 version: 1.0.0
 inputs: [переменные весов и дизайна]
 outputs: [взвешенные и невзвешенные оценки]

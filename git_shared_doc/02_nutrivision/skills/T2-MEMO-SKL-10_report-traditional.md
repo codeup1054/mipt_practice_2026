@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-10_report-traditional
 code: T2-MEMO-SKL-10
 theme: T2
-description: Собрать отчёт с числом, ограничениями и сравнением с ручным способом.
+description: "Собрать отчёт с числом, ограничениями и сравнением с ручным способом."
 version: 1.0.0
 inputs: [metrics.json, factors.csv, графики]
 outputs: [report.html, README]

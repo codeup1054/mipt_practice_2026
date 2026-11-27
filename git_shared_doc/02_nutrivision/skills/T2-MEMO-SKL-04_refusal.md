@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-04_refusal
 code: T2-MEMO-SKL-04
 theme: T2
-description: Не выдумывать калории, если блюдо не распознано.
+description: "Не выдумывать калории, если блюдо не распознано."
 version: 1.0.0
 inputs: [фото, confidence]
 outputs: [error: not_food | low_confidence]

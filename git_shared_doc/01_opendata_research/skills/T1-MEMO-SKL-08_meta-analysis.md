@@ -2,7 +2,7 @@
 name: T1-MEMO-SKL-08_meta-analysis
 code: T1-MEMO-SKL-08
 theme: T1
-description: Согласовать эффекты разных наборов и показать гетерогенность.
+description: "Согласовать эффекты разных наборов и показать гетерогенность."
 version: 1.0.0
 inputs: [эффекты и стандартные ошибки по наборам]
 outputs: [forest plot, I², общий эффект]

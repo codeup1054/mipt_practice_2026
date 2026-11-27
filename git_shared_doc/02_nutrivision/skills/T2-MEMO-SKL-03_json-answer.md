@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-03_json-answer
 code: T2-MEMO-SKL-03
 theme: T2
-description: Вернуть JSON, который можно сравнить между моделями.
+description: "Вернуть JSON, который можно сравнить между моделями."
 version: 1.0.0
 inputs: [фото, вес]
 outputs: [components[], kcal, Б/Ж/У, confidence, notes]

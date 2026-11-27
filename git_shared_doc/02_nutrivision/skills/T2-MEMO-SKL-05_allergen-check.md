@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-05_allergen-check
 code: T2-MEMO-SKL-05
 theme: T2
-description: Отметить вероятные аллергены в notes.
+description: "Отметить вероятные аллергены в notes."
 version: 1.0.0
 inputs: [components[]]
 outputs: [notes с аллергенами]

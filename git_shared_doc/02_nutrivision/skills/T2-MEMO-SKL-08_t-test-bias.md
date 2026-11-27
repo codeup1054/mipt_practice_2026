@@ -2,7 +2,7 @@
 name: T2-MEMO-SKL-08_t-test-bias
 code: T2-MEMO-SKL-08
 theme: T2
-description: Проверить систематическое смещение калорий.
+description: "Проверить систематическое смещение калорий."
 version: 1.0.0
 inputs: [err_pct по варианту]
 outputs: [t, p, df, 95% CI]
