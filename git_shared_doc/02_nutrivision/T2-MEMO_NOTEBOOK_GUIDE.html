@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T2-MEMO · Как провести нутриентный анализ еды (NUT-02)</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+CiAgPHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTEiIGZpbGw9IiM0QjNGODIiLz4KICA8cmVjdCB4PSI5IiB5PSI5IiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHJ4PSI4IiBmaWxsPSJub25lIiBzdHJva2U9IiM5QjhFRDYiIHN0cm9rZS13aWR0aD0iMi4yIi8+CiAgPHBhdGggZD0iTTE2IDM0VjE0aDlhNyA3IDAgMCAxIDAgMTRoLTkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Y1N0Q2NCIgc3Ryb2tlLXdpZHRoPSIzLjQiCiAgICAgICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iMzUiIGN5PSIxNCIgcj0iMy4yIiBmaWxsPSIjRTYyRTdDIi8+Cjwvc3ZnPg==">
+<style>
+  :root {
+    --ink: #241E45; --muted: #6E6690; --line: #E4DDF6; --bg: #F7F4FC;
+    --dark: #2E2657; --green: #4B3F82; --green2: #9B8ED6;
+    --accent: #E62E7C; --soft: #EDE7FB; --warn: #C4256A; --ok: #6F9C4A;
+    --lav: #9B8ED6; --lav-l: #EDE7FB; --coral: #F57D64; --sage: #B2BE92;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); overflow-x: hidden;
+         font: 14px/1.55 "Segoe UI", Arial, sans-serif; }
+  a { color: #4B3F82; }
+  a:hover { color: var(--magenta); }
+  code, .mono { font-family: "Cascadia Mono", Consolas, monospace; font-size: 12.5px; }
+  code { background: var(--lav-l); color: #3A3168; padding: 1px 5px; border-radius: 4px; }
+  pre code { background: none; color: inherit; padding: 0; border-radius: 0; }
+  .page { max-width: 1180px; margin: 0 auto; }
+
+  /* шапка как на practicum.mipt.startupassist.ru */
+  .top { background: var(--dark); color: #fff; border-bottom: 3px solid var(--magenta);
+         width: 100vw; margin-left: calc(50% - 50vw); }
+  .top-bar { position: sticky; top: 0; z-index: 60; background: var(--dark);
+             border-bottom: 1px solid #3A3168;
+             max-width: 1180px; margin: 0 auto; padding: 10px 20px;
+             display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: #fff; }
+  .mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
+          background: var(--coral); color: var(--dark); font-weight: 800; }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-text b { font-size: 15px; }
+  .brand-text i { font-style: normal; font-size: 10.5px; color: #C9BEEA; letter-spacing: .04em; }
+  .top nav { display: flex; gap: 2px; flex-wrap: wrap; margin-left: auto; }
+  .top nav a { color: #DCD4F2; text-decoration: none; padding: 6px 10px; border-radius: 7px;
+               font-size: 12.5px; font-weight: 600; }
+  .top nav a:hover { background: #3A3168; color: #fff; }
+  .top nav a.on { background: var(--magenta); color: #fff; }
+  .top-note { font-size: 10.5px; color: #C9BEEA; letter-spacing: .04em; }
+  .hero { max-width: 1180px; margin: 0 auto; padding: 18px 20px 20px; }
+  .hero .kicker { margin: 0 0 4px; font-size: 9.5px; letter-spacing: .12em;
+                  text-transform: uppercase; color: #C9BEEA; }
+  .hero h1 { margin: 0 0 6px; font-size: 23px; line-height: 1.2; }
+  .hero .hero-lead { margin: 0; color: #DCD4F2; max-width: 900px; font-size: 13px; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .hero-meta span { background: #3A3168; border: 1px solid #6B5AA8; border-radius: 6px;
+                    padding: 3px 9px; font-size: 11.5px; color: #DCD4F2; }
+  .hero-meta b { color: #fff; }
+  .hero-meta i { color: var(--coral); font-style: normal; }
+
+  /* раскладка */
+  .shell { display: grid; grid-template-columns: 238px minmax(0, 1fr); gap: 18px;
+           padding: 18px 20px 60px; align-items: start; }
+  @media (max-width: 980px) { .shell { grid-template-columns: 1fr; padding: 12px; } }
+
+  /* меню-аккордеон */
+  .side { position: sticky; top: 62px; background: #fff; border: 1px solid var(--line);
+          border-radius: 12px; padding: 10px; max-height: calc(100vh - 24px); overflow: auto; }
+  @media (max-width: 980px) { .side { position: static; max-height: none; } }
+  .side-title { font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+                color: var(--muted); font-weight: 700; padding: 4px 6px 8px; }
+  .side details { border-top: 1px solid #EDE7FB; }
+  .side details:first-of-type { border-top: 0; }
+  .side summary { list-style: none; cursor: pointer; display: flex; align-items: center;
+                  gap: 7px; padding: 8px 6px; font-weight: 700; font-size: 13px;
+                  color: #2E2657; border-radius: 6px; }
+  .side summary::-webkit-details-marker { display: none; }
+  .side summary:hover { background: var(--soft); }
+  .arrow { display: inline-flex; width: 12px; height: 12px; transition: transform .18s; }
+  .arrow svg { width: 12px; height: 12px; }
+  .side details[open] > summary .arrow { transform: rotate(-90deg); }
+  .side a { display: block; padding: 5px 8px 5px 25px; color: #4A4173; text-decoration: none;
+            font-size: 12.5px; border-radius: 5px; }
+  .side a:hover { background: var(--soft); color: #3A3168; }
+  .side a.on { background: #EDE7FB; color: #3A3168; font-weight: 700; }
+
+  /* план исследования — яркий виджет в начале */
+  .plan { margin: 16px 20px 0; padding: 18px 20px 16px; border: 2px solid #E62E7C;
+          border-radius: 14px; background: linear-gradient(135deg, #FDF0F7, #EDE7FB 62%, #F9D9E6);
+          box-shadow: 0 8px 22px rgba(230, 46, 124, .16); }
+  @media (max-width: 980px) { .plan { margin: 12px 12px 0; } }
+  .plan-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
+               gap: 10px; }
+  .plan h2 { margin: 0 0 3px; font-size: 20px; color: #2E2657; }
+  .plan .plan-sub { margin: 0; color: #6E6690; font-size: 13px; }
+  .plan-copy, .plan-copy2 { border: 0; background: #2E2657; color: #fff; border-radius: 7px;
+                            padding: 7px 12px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .plan-copy:hover, .plan-copy2:hover { background: #4B3F82; }
+  .plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;
+               margin-top: 13px; }
+  @media (max-width: 900px) { .plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .plan-grid { grid-template-columns: 1fr; } }
+  .pstep { display: flex; gap: 9px; align-items: flex-start; background: rgba(255, 255, 255, .88);
+           border: 1px solid #DCD4F2; border-radius: 9px; padding: 8px 10px;
+           text-decoration: none; color: #241E45; transition: transform .15s, border-color .15s; }
+  .pstep:hover { transform: translateY(-1px); border-color: #E62E7C; background: #fff; }
+  .pn { flex: none; width: 26px; height: 26px; border-radius: 7px; background: #2E2657;
+        color: #F57D64; font-weight: 700; font-size: 12px; display: grid; place-items: center; }
+  .pstep b { display: block; font-size: 13px; line-height: 1.25; }
+  .pstep small { display: block; color: #6E6690; font-size: 11.5px; line-height: 1.35;
+                 margin-top: 2px; }
+  .hot-note { background: #FFEB00; color: var(--dark); padding: 2px 6px;
+              border-radius: 4px; font-weight: 700; box-decoration-break: clone;
+              -webkit-box-decoration-break: clone;
+              box-shadow: inset 0 -3px 0 #F5C400; }
+  .plan-keys { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px;
+               align-items: stretch; margin-top: 12px; }
+  .pkey { display: flex; flex-direction: column; gap: 2px; text-decoration: none;
+          border: 2px solid; border-radius: 10px; padding: 9px 12px; background: #fff; }
+  .pkey-goal { border-color: var(--magenta); }
+  .pkey-result { border-color: var(--olive); }
+  .pkey .pk-kind { font-size: 9px; font-weight: 800; letter-spacing: .09em;
+                   text-transform: uppercase; }
+  .pkey-goal .pk-kind { color: var(--magenta); }
+  .pkey-result .pk-kind { color: #4C6B32; }
+  .pkey b { color: var(--dark); font-size: 13.5px; line-height: 1.25; }
+  .pkey small { color: var(--muted); font-size: 11.5px; line-height: 1.35; }
+  .pk-arrow { display: grid; place-items: center; color: var(--magenta);
+              font-weight: 800; font-size: 18px; }
+  @media (max-width: 560px) {
+    .plan-keys { grid-template-columns: 1fr; }
+    .pk-arrow { transform: rotate(90deg); }
+  }
+
+  .plan-start { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+                gap: 10px; margin-top: 12px; background: #2E2657; color: #DCD4F2;
+                border-radius: 9px; padding: 9px 12px; }
+  .plan-start p { margin: 0; font-size: 12.5px; }
+  .plan-start b { color: #F57D64; }
+  .plan-method { margin-top: 10px; background: rgba(255, 255, 255, .78);
+                 border: 1px solid #F3C6DF; border-radius: 9px; padding: 8px 12px; }
+  .plan-method summary { cursor: pointer; font-size: 11.5px; font-weight: 700;
+                         color: var(--dark); list-style: none; }
+  .plan-method summary::-webkit-details-marker { display: none; }
+  .plan-method summary::before { content: "+"; color: var(--magenta); font-weight: 800;
+                                 margin-right: 6px; }
+  .plan-method[open] summary::before { content: "–"; }
+  .plan-method p { margin: 7px 0 0; font-size: 11.5px; line-height: 1.45; color: #4A4173; }
+  .plan-method ol { margin: 8px 0 2px; padding-left: 18px; display: grid;
+                    grid-template-columns: 1fr 1fr; gap: 4px 18px;
+                    font-size: 11.5px; line-height: 1.4; color: var(--muted); }
+  .plan-method li b { color: var(--dark); }
+  @media (max-width: 760px) { .plan-method ol { grid-template-columns: 1fr; } }
+
+  .plan-note { margin-top: 9px; color: #6E6690; font-size: 11.5px; }
+
+  /* попап стартового промпта */
+  .prompt-dialog { border: 0; border-radius: 14px; padding: 0; max-width: min(640px, 92vw);
+                   box-shadow: 0 24px 60px rgba(46, 38, 87, .35); color: var(--ink); }
+  .prompt-dialog::backdrop { background: rgba(46, 38, 87, .55); }
+  .pd-head { display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+             background: var(--dark); color: #fff; }
+  .pd-head b { font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: #fff; }
+  .pd-close { margin-left: auto; background: none; border: 0; color: #fff;
+              font-size: 22px; line-height: 1; cursor: pointer; padding: 0 4px; }
+  .pd-close:hover { color: var(--coral); }
+  .pd-body { padding: 14px 16px 16px; background: #fff; }
+  .pd-body p { margin: 0 0 12px; font-size: 14px; line-height: 1.55; color: var(--ink); }
+  .pd-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .pd-hint { color: var(--muted); font-size: 11.5px; }
+
+  /* прогресс */
+  .bar { position: static; background: #fff; border-bottom: 1px solid var(--line);
+         padding: 9px 20px; display: flex; align-items: center; gap: 12px; }
+  .bar .track { flex: 1; height: 8px; background: #EDE7FB; border-radius: 99px; overflow: hidden; }
+  .bar .fill { height: 100%; width: 0; background: linear-gradient(90deg, #4B3F82, #E62E7C);
+               transition: width .25s; }
+  .bar .pct { font-size: 12.5px; font-weight: 700; color: #4B3F82; min-width: 42px; text-align: right; }
+  .bar button { border: 1px solid var(--line); background: #fff; border-radius: 6px;
+                padding: 5px 10px; font-size: 12px; cursor: pointer; color: #4A4173; }
+  .bar button:hover { border-color: #4B3F82; color: #3A3168; }
+
+  /* контент */
+  .content { min-width: 0; }
+  .lead { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--accent);
+          border-radius: 12px; padding: 14px 18px; margin-bottom: 14px;
+          box-shadow: 0 1px 0 rgba(75, 63, 130, .04); }
+  .lead p { margin: 0 0 8px; }
+  .lead ul { margin: 6px 0 0 18px; padding: 0; }
+  .lead li { margin: 3px 0; }
+
+  .stage { background: #fff; border: 1px solid var(--line); border-radius: 12px;
+           padding: 16px; margin-bottom: 14px; scroll-margin-top: 62px;
+           box-shadow: 0 1px 0 rgba(75, 63, 130, .04); }
+  .stage-head { display: flex; gap: 10px; align-items: flex-start; }
+  .num { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--dark);
+         color: var(--coral); font-weight: 700; display: grid; place-items: center; font-size: 12px;
+         margin-top: 1px; }
+  .stage h2 { margin: 1px 0 3px; font-size: 16px; line-height: 1.3; text-transform: uppercase;
+              letter-spacing: .03em; color: var(--dark); }
+  .goal { margin: 0; color: var(--muted); font-size: 14px; }
+  .stage-kicker { margin: 0 0 3px; }
+  .key-badge { display: inline-flex; align-items: center; border-radius: 999px;
+               padding: 2px 9px; font-size: 9px; font-weight: 800; letter-spacing: .07em;
+               text-transform: uppercase; }
+  .key-badge.goal { background: #FDF0F7; color: var(--magenta); border: 1px solid #F3C6DF; }
+  .key-badge.result { background: #F3F7EC; color: #4C6B32; border: 1px solid #D6E3C4; }
+  .key-action { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px;
+                border: 1px solid var(--line); border-left: 4px solid; border-radius: 9px;
+                padding: 9px 12px; font-size: 13.5px; line-height: 1.5; }
+  .key-action.goal { border-left-color: var(--magenta); border-color: #F3C6DF; background: #FDF0F7; }
+  .key-action.result { border-left-color: var(--olive); border-color: #D6E3C4; background: #F3F7EC; }
+  .key-action b { flex: none; font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase;
+                  padding-top: 3px; color: var(--dark); }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px;
+           font-weight: 700; padding: 2px 8px; border-radius: 99px; background: var(--soft);
+           color: #4B3F82; }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #6F9C4A; }
+  .badge.warn { background: #FDE9F1; color: var(--warn); }
+  .badge.warn .dot { background: var(--warn); }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .box h3 { margin: 0 0 6px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+            color: var(--muted); }
+  .box ul, .box ol { margin: 0; padding-left: 18px; }
+  .box li { margin: 4px 0; }
+  .q { margin: 0 0 7px; }
+  .q b { font-weight: 600; }
+  .q span { display: block; color: var(--muted); font-size: 12.5px; }
+
+  .check { display: flex; gap: 8px; align-items: flex-start; margin: 5px 0; font-size: 13.5px; }
+  .check input { margin-top: 3px; accent-color: var(--magenta); }
+  .check.done label { color: var(--muted); text-decoration: line-through; }
+
+  /* бейджи промптов, скиллов и тулов */
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .bdg { border: 1px solid #E4DDF6; background: #fff; border-radius: 99px; padding: 4px 11px;
+         font-size: 12px; cursor: pointer; color: #241E45; line-height: 1.3; }
+  .bdg::before { content: attr(data-kind); text-transform: uppercase; font-size: 9px;
+                 letter-spacing: .07em; font-weight: 700; color: #4A4173; margin-right: 7px;
+                 padding: 1px 6px; border-radius: 99px; background: #EDE7FB; }
+  .bdg[data-kind="промпт"]::before { background: #F57D64; color: #FFFFFF; }
+  .bdg[data-kind="скилл"]::before { background: #B2BE92; color: #2E2657; }
+  .bdg[data-kind="тул"]::before { background: #9B8ED6; color: #FFFFFF; }
+  .bdg:hover { border-color: #4B3F82; }
+  .bdg.on { border-color: #4B3F82; box-shadow: 0 0 0 2px #DCD4F2; }
+  .bdg[data-kind="промпт"] { border-color: #F57D64; background: #FFF4EF; }
+  .bdg[data-kind="скилл"] { border-color: #B2BE92; background: #F3F7EC; }
+  .bdg[data-kind="тул"] { border-color: #9B8ED6; background: #F7F4FC; }
+  .bdg-panel { margin-top: 8px; border: 1px solid #E4DDF6; border-left: 4px solid #4B3F82;
+               background: #FBF9FE; border-radius: 8px; padding: 10px 12px; font-size: 13px; }
+  .bdg-panel[hidden] { display: none; }
+  .bdg-panel .bdg-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+                         justify-content: space-between; margin-bottom: 5px; }
+  .bdg-panel .bdg-head b { font-size: 12px; text-transform: uppercase; letter-spacing: .06em;
+                           color: #4B3F82; }
+  .bdg-panel p { margin: 0 0 7px; }
+  .bdg-panel pre { margin: 0; padding: 9px 11px; background: #2E2657; color: #EDE7FB;
+                   border-radius: 6px; overflow: auto; font-size: 12px; line-height: 1.45; }
+
+  .prompt { margin-top: 12px; border: 1px dashed #C9BEEA; background: #FBF9FE;
+            border-radius: 8px; padding: 10px 12px; }
+  .prompt .ph { display: flex; justify-content: space-between; gap: 10px; align-items: center;
+                font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em;
+                color: var(--muted); font-weight: 700; margin-bottom: 6px; }
+  .prompt p { margin: 0; font-size: 13.5px; }
+  .copy { border: 1px solid #4B3F82; background: #4B3F82; border-radius: 7px; padding: 4px 9px;
+          font-size: 11.5px; font-weight: 600; cursor: pointer; color: #fff; }
+  .copy:hover { background: var(--magenta); border-color: var(--magenta); }
+
+  details.ex { margin-top: 12px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  details.ex summary { cursor: pointer; padding: 8px 12px; background: #FBF9FE; font-size: 13px;
+                       font-weight: 600; color: #2E2657; }
+  details.ex pre { margin: 0; padding: 12px 14px; background: #2E2657; color: #EDE7FB;
+                   overflow: auto; font-size: 12.5px; line-height: 1.5; max-height: 420px; }
+  details.ex .note { padding: 8px 12px; font-size: 12.5px; color: var(--muted);
+                     border-top: 1px solid var(--line); }
+
+  .final { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px;
+           box-shadow: 0 1px 0 rgba(75, 63, 130, .04); }
+  .final h2 { margin-top: 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+  .flag { border-left: 4px solid #E62E7C; background: #FDF0F7; padding: 8px 12px;
+          border-radius: 4px; margin: 6px 0; font-size: 13.5px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .toc a { font-size: 12px; border: 1px solid var(--line); border-radius: 99px;
+           padding: 3px 10px; text-decoration: none; color: #4B3F82; background: #fff; }
+  .toc a:hover { background: #EDE7FB; }
+  .foot { text-align: center; color: var(--muted); font-size: 12px; padding: 10px 0 30px; }
+
+  @media (max-width: 560px) {
+    .top-bar { padding: 8px 12px; }
+    .top nav { margin-left: 0; }
+    .top-note { display: none; }
+    .hero { padding: 14px 14px 16px; }
+    .hero h1 { font-size: 21px; }
+    .meta span { font-size: 11px; }
+    .plan { padding: 14px; }
+    .plan-head { flex-direction: column; align-items: stretch; }
+    .plan-copy { align-self: flex-start; }
+    .plan-start { align-items: flex-start; }
+    .plan-start p { overflow-wrap: anywhere; }
+    .bar { flex-wrap: wrap; padding: 8px 12px; }
+    .bar .track { flex: 1 1 120px; }
+    .bar .pct { min-width: 0; }
+    .stage { padding: 14px 14px 16px; }
+    .final { padding: 14px; }
+  }
+
+  @media print {
+    .side, .bar, .copy, .toc { display: none !important; }
+    .shell { display: block; padding: 0; }
+    .stage { break-inside: avoid; border: 0; border-bottom: 1px solid #ccc; border-radius: 0; }
+    details.ex { display: block; }
+    details.ex > summary { display: none; }
+    details.ex pre { max-height: none; background: #f4f4f4; color: #111; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <div class="top-bar">
+      <a class="brand" href="https://practicum.mipt.startupassist.ru/">
+        <span class="mark">П</span>
+        <span class="brand-text"><b>Практикум</b><i>BMITECH × МФТИ</i></span>
+      </a>
+      <nav aria-label="Сайт практики">
+        <a href="https://practicum.mipt.startupassist.ru/">Главная</a>
+        <a href="https://practicum.mipt.startupassist.ru/limits">Лимиты</a>
+        <a class="on" href="#plan">Инструкция</a>
+      </nav>
+      <span class="top-note" id="top-note">notebook_guide</span>
+    </div>
+    <div class="hero">
+      <p class="kicker">Практика · исследование данных · 27.11.2026</p>
+      <h1>T2-MEMO · Как провести нутриентный анализ еды (NUT-02)</h1>
+      <p class="hero-lead">Пошаговая инструкция по эталонному ноутбуку NUT02_REFERENCE.ipynb: 9 шагов, гипотезы, навык, прогоны, MAE %, Match %, t-критерий и вывод.</p>
+      <div class="hero-meta" id="meta"></div>
+    </div>
+  </header>
+
+  <section class="plan" id="plan" aria-label="План исследования"></section>
+
+  <div class="bar">
+    <span class="pct" id="pct">0 %</span>
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <button type="button" id="reset">Сбросить отметки</button>
+    <button type="button" onclick="window.print()">Печать</button>
+  </div>
+
+  <div class="shell">
+    <aside class="side" id="side" aria-label="Шаги исследования">
+      <div class="side-title">Шаги исследования</div>
+      <noscript><p style="padding:8px">Для навигации нужен JavaScript.</p></noscript>
+    </aside>
+
+    <main class="content">
+      <section class="lead" id="how">
+        <p><b>Как пользоваться.</b> Идите по шагам сверху вниз. На каждом шаге сначала ответьте
+          на вопросы, потом сделайте действие, потом закройте проверку. Отметки сохраняются
+          в браузере; кнопка «Печать» даёт версию для сдачи.</p>
+        <ul id="rules"></ul>
+      </section>
+
+      <div id="stages"></div>
+
+      <section class="final" id="final">
+        <h2>Сдача: чек-лист и красные флаги</h2>
+        <div class="cols">
+          <div>
+            <h3 style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6E6690">Красные флаги</h3>
+            <div id="flags"></div>
+          </div>
+          <div>
+            <h3 style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6E6690">Автоматическая проверка</h3>
+            <p style="font-size:13.5px;color:#6E6690">Запустите в каталоге проекта:</p>
+            <pre style="background:#2E2657;color:#EDE7FB;padding:12px;border-radius:8px;overflow:auto;font-size:12.5px">python 01.lab/07_skills/41.notebook_guide/scripts/nb_guide.py check notebook.ipynb</pre>
+            <p style="font-size:13.5px;color:#6E6690">Проверка смотрит якоря, оглавление, интерпретации
+              после графиков, размер ячеек, абсолютные пути, seed и эмодзи.</p>
+            <div id="issues"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="foot">Сгенерировано nb_guide.py · 27.11.2026 · источник: NUT02_REFERENCE.ipynb</div>
+    </main>
+  </div>
+</div>
+
+  <dialog class="prompt-dialog" id="prompt-dialog">
+    <div class="pd-head">
+      <b>Стартовый промпт</b>
+      <button class="pd-close" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <div class="pd-body">
+      <p id="pd-text"></p>
+      <div class="pd-actions">
+        <button class="copy" type="button" id="pd-copy">Скопировать</button>
+        <span class="pd-hint">Вставьте первым сообщением в чат ассистента.</span>
+      </div>
+    </div>
+  </dialog>
+
+<script>
+const GUIDE = {"slug": "nut02-reference", "title": "T2-MEMO · Как провести нутриентный анализ еды (NUT-02)", "source": "NUT02_REFERENCE.ipynb", "date": "27.11.2026", "stats": {"cells": 31, "code": 14, "markdown": 17, "sections": 10, "figures": 6, "code_lines": 465}, "rules": ["Один каталог и один промпт: меняем одну переменную за раз, иначе разница моделей смешивается с разницей инструкций.", "Скилл возвращает строгий JSON; свободный текст не сравнивается между моделями.", "Сырые ответы сохраняются в out/runs/<вариант>/ — метрики считаются из них, а не из пересказа.", "MAE % и Match % считаются по каждому блюду, затем агрегируются по варианту.", "t-критерий проверяет систематическое смещение; порог берётся по фактическому числу степеней свободы.", "Выбросы объясняются, а не удаляются: сложный состав, соус, неточный вес.", "Числа в тексте берутся из metrics.json и factors.csv, а не набираются руками.", "Это расчёт КБЖУ и ингредиентов, а не медицинская рекомендация."], "red_flags": ["Сравнивают модели на разных наборах блюд или разных промптах.", "Скилл отдаёт текст, который нельзя разобрать в JSON.", "Метрика посчитана «на глаз» или только по среднему без разброса.", "Match % считается без эталонного состава блюда.", "t-критерий есть, но H₀ и число степеней свободы не названы.", "Выбросы удалены без объяснения.", "Вывод «модель лучше» без размера эффекта и проверки шума.", "В отчёте нет раздела «Традиционный способ» и ограничений."], "plan": {"title": "План исследования", "note": "План примерный: его можно менять под задачу. Шаги, подсказки и связи с разделами лежат в stages_nut02.json → plan.", "start_prompt": "У меня есть фотографии блюд и эталонные КБЖУ. Помоги спланировать сравнение моделей и скилла распознавания: какие гипотезы проверить, какие метрики посчитать и как доказать, что сильнее — модель, чат или скилл.", "steps": [{"num": "-1", "title": "Есть фото блюд", "stages": ["2"], "hint": "«У меня есть фото и эталон — с чего начать?»"}, {"num": "0", "title": "Вопрос и гипотеза", "stages": ["1"], "hot": true, "hint": "Модель, чат или скилл — что сильнее и каким числом докажем"}, {"num": "1", "title": "Каталог и паспорт", "stages": ["2"], "hint": "20+ блюд, вес, КБЖУ, состав, источник"}, {"num": "2", "title": "Скилл v1 → v2", "stages": ["3"], "hint": "Строгий JSON, отказ, версия и CHANGELOG"}, {"num": "3", "title": "Прогоны", "stages": ["4"], "hint": "2 модели × 2 чата, один каталог и промпт"}, {"num": "4", "title": "MAE и Match", "stages": ["5"], "hint": "Ошибка калорий и полнота ингредиентов"}, {"num": "5", "title": "t-критерий", "stages": ["6"], "hint": "Систематическое смещение и доверительный интервал"}, {"num": "6", "title": "Боксплот", "stages": ["7"], "hint": "Разброс и объяснение выбросов"}, {"num": "7", "title": "Схемы A–D", "stages": ["8"], "hint": "Один фактор за раз и взаимодействие"}, {"num": "8", "title": "Вывод и отчёт", "stages": ["9"], "hint": "Что сильнее, где шум, где границы"}]}, "method": {"title": "Научный метод", "text": "Исследование идёт от наблюдения к проверяемому вопросу, опровержимой гипотезе, заранее выбранному методу и данным, затем к анализу с неопределённостью и выводам с ограничениями. Код, seed и артефакты делают результат воспроизводимым.", "steps": ["Наблюдение — что замечено в данных, литературе или практике.", "Вопрос — один проверяемый вопрос, на который можно ответить данными.", "Гипотеза — предсказание, которое можно опровергнуть.", "Метод и данные — дизайн, выборка, переменные и способ анализа до результатов.", "Анализ — QC, описательные, модель, неопределённость.", "Выводы — подтвердилась гипотеза или нет, с ограничениями.", "Воспроизводимость — код, seed, артефакты, чек-лист."]}, "groups": [{"id": "g1", "title": "Подготовка", "from": 1, "to": 3}, {"id": "g2", "title": "Данные и прогоны", "from": 4, "to": 6}, {"id": "g3", "title": "Анализ", "from": 7, "to": 9}], "stages": [{"num": 1, "id": "question", "title": "Вопрос и гипотеза", "goal": "Сформулировать, что сравниваем — модель, чат или скилл — и каким числом докажем.", "sections": ["1"], "questions": [{"q": "Что именно сравниваем и какую переменную меняем?", "why": "иначе разница моделей смешается с разницей промптов"}, {"q": "Какая гипотеза главная: скилл, модель или чат?", "why": "заранее выбранная гипотеза защищает от подгонки"}, {"q": "Какая метрика решает: MAE %, Match % или t-критерий?", "why": "метрика задаёт схему прогонов"}, {"q": "Что будет считаться опровержением?", "why": "заранее принятое опровержение защищает от подгонки"}], "actions": ["Записать вопрос одной фразой без терминов.", "Выбрать схему A–D и назвать единственную переменную.", "Зафиксировать пороги MAE ≤ 15 % и Match ≥ 80 %.", "Записать, что в этом исследовании не проверяем."], "checks": ["Есть одна главная гипотеза и одна переменная.", "Схема названа: A, B, C или D.", "Порог записан до прогонов, а не после."], "prompt": "Помоги сформулировать исследование NUT-02: вопрос, главную гипотезу, одну переменную для сравнения, метрику и что будет считаться опровержением. Задай 3 уточняющих вопроса, если чего-то не хватает.", "badges": [{"kind": "промпт", "label": "вопрос и гипотеза", "text": "Помоги сформулировать исследование NUT-02: вопрос, главную гипотезу, одну переменную, метрику и опровержение. Задай 3 уточняющих вопроса."}, {"kind": "скилл", "label": "project_log", "text": "Журнал проекта: вопрос, варианты, вопросы владельцу и план.", "code": "python 01.lab/07_skills/10.project_log/scripts/new_log.py --title \"...\" --slug ... --out ..."}, {"kind": "тул", "label": "nb_guide.py check", "text": "Проверить структуру ноутбука перед прогонами.", "code": "python 01.lab/07_skills/41.notebook_guide/scripts/nb_guide.py check notebook.ipynb"}, {"kind": "скилл", "label": "devflow", "text": "Найти, как похожие сравнения делали в других проектах.", "code": "skill: devflow — искать MAE, Match, сравнение моделей"}], "key": "goal", "key_role": "цель", "key_title": "Какой фактор проверяем", "key_hint": "Модель, чат или скилл — что сильнее и чем докажем", "key_action": "Сформулировать вопрос и одну главную гипотезу. Если сравниваем всё сразу, разница моделей смешается с разницей промптов, и вывод нельзя защитить.", "example": {"section": "1. Вопрос и гипотеза", "code": "from __future__ import annotations\n\nimport json\nimport random\nfrom pathlib import Path\n\nimport matplotlib\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\n\nSEED = 42\nrandom.seed(SEED)\nnp.random.seed(SEED)\n\nROOT = Path.cwd().resolve()\nwhile not (ROOT / \"processed\" / \"food_catalog.json\").exists() and ROOT != ROOT.parent:\n    ROOT = ROOT.parent\nif not (ROOT / \"processed\" / \"food_catalog.json\").exists():\n    raise FileNotFoundError(\"не найден processed/food_catalog.json — откройте ноутбук из analysis/t2\")\n\n# ...", "note": "Ячейка 4. Фрагмент приведён как пример стиля, а не как готовый код."}}, {"num": 2, "id": "catalog", "title": "Каталог и паспорт", "goal": "Собрать 20+ блюд с фото, весом, эталонными КБЖУ, составом и источником.", "sections": ["2"], "questions": [{"q": "Сколько блюд и кто их собирает?", "why": "5 блюд от каждого дают 20+ для статистики"}, {"q": "Откуда эталонные КБЖУ и состав?", "why": "без источника эталон нельзя проверить"}, {"q": "Как фиксируем вес порции?", "why": "ошибка веса напрямую меняет калории"}, {"q": "Какая лицензия у фото и меню?", "why": "чужие фото нельзя публиковать без прав"}], "actions": ["Сложить фото в data/raw/dishes/ с понятными именами.", "Собрать food_catalog.json: id, блюдо, вес, ккал, Б/Ж/У, состав, ndi.", "Записать PASSPORT.md: источник, дата, лицензия, единицы.", "Сверить, что id уникальны и нет дублей."], "checks": ["В каталоге 20+ блюд с фото и эталоном.", "У каждого блюда есть источник и лицензия.", "Состав записан списком, а не абзацем.", "Вес указан в граммах, калории — на порцию."], "prompt": "Проверь каталог блюд: для каждого укажи фото, вес, КБЖУ, состав, источник и лицензию. Найди дубли id и блюда без эталона. Скажи, каких полей не хватает для MAE % и Match %.", "badges": [{"kind": "промпт", "label": "паспорт каталога", "text": "Проверь каталог: фото, вес, КБЖУ, состав, источник, лицензия; найди дубли и пропуски."}, {"kind": "тул", "label": "food_catalog.json", "text": "Единый каталог блюд для всех моделей.", "code": "processed/food_catalog.json"}, {"kind": "тул", "label": "USDA FoodData Central", "text": "Эталонные нутриенты и состав продуктов.", "code": "https://fdc.nal.usda.gov/"}, {"kind": "тул", "label": "Open Food Facts", "text": "Состав и КБЖУ упакованных продуктов.", "code": "https://ru.openfoodfacts.org/"}], "example": {"section": "2. Каталог и паспорт", "code": "CATALOG_PATH = ROOT / \"processed\" / \"food_catalog.json\"\ncatalog = json.loads(CATALOG_PATH.read_text(encoding=\"utf-8\"))\ndishes = pd.DataFrame(catalog[\"dishes\"])\n\ndishes[\"macro_kcal\"] = (4 * dishes[\"protein\"] + 9 * dishes[\"fat\"]\n                        + 4 * dishes[\"carbs\"])\ndishes[\"kcal_diff\"] = dishes[\"macro_kcal\"] - dishes[\"kcal\"]\n\nprint(\"блюд в каталоге:\", len(dishes), \"| источников:\",\n      dishes[\"source\"].nunique())\nprint(\"средняя разница «макросы − эталон», ккал:\",\n      round(dishes[\"kcal_diff\"].abs().mean(), 1))\ndisplay(dishes[[\"id\", \"name\", \"weight_g\", \"kcal\", \"protein\", \"fat\",\n                \"carbs\", \"ndi\", \"kcal_diff\"]])", "note": "Ячейка 6. Фрагмент приведён как пример стиля, а не как готовый код."}}, {"num": 3, "id": "skill", "title": "Скилл v1 → v2", "goal": "Скилл возвращает строгий JSON и умеет отказываться, если блюдо не распознано.", "sections": ["3"], "questions": [{"q": "Какие поля обязан вернуть скилл?", "why": "без схемы ответы моделей нельзя сравнить"}, {"q": "Что делать, если блюдо не распознано?", "why": "отказ лучше выдуманных ингредиентов"}, {"q": "Как проверяем порцию и аллергены?", "why": "это часть качества, а не украшение"}, {"q": "Что меняется между v1 и v2?", "why": "версия должна объяснять прирост"}], "actions": ["Написать SKILL.md: вход, выход, проверки, отказ.", "Зафиксировать JSON-схему и пример ответа.", "Добавить CHANGELOG: что изменилось в v2.", "Прогнать скилл на 3 блюдах и проверить схему."], "checks": ["Скилл возвращает JSON с components, kcal, Б/Ж/У, confidence, notes.", "Есть отказ not_food или low_confidence.", "В v2 есть проверка порции и запрет выдумывать ингредиенты.", "У скилла есть версия и CHANGELOG."], "prompt": "Собери SKILL.md для распознавания блюда: вход фото и вес, выход строгий JSON {components, kcal, protein, fat, carbs, confidence, notes}, отказ при нераспознанном блюде, проверка порции и аллергенов. Добавь CHANGELOG v1 → v2.", "badges": [{"kind": "промпт", "label": "SKILL.md", "text": "Собери SKILL.md: вход, выход-JSON, отказ, проверка порции, версия и CHANGELOG."}, {"kind": "тул", "label": "validate_answer", "text": "Проверка схемы ответа в ноутбуке.", "code": "validate_answer(sample_v2)"}, {"kind": "скилл", "label": "text_guard", "text": "Проверить SKILL.md на скрытые инструкции и мусор.", "code": "python 01.lab/07_skills/18.text_guard/scripts/guard.py SKILL.md"}, {"kind": "тул", "label": "nb_guide.py check", "text": "Проверить ноутбук и артефакты.", "code": "python 01.lab/07_skills/41.notebook_guide/scripts/nb_guide.py check notebook.ipynb"}], "example": {"section": "3. Скилл: схема и версии", "code": "SKILL_SCHEMA = {\n    \"components\": list, \"kcal\": (int, float), \"protein\": (int, float),\n    \"fat\": (int, float), \"carbs\": (int, float),\n    \"confidence\": (int, float), \"notes\": list,\n}\n\n\ndef validate_answer(ans) -> list[str]:\n    \"\"\"Проверка ответа скилла: структура, диапазоны, отказ.\"\"\"\n    if not isinstance(ans, dict):\n        return [\"ответ не объект\"]\n    if \"error\" in ans:\n        return [] if ans[\"error\"] in {\"not_food\", \"low_confidence\"} else [\"неизвестный отказ\"]\n    errors = []\n    for key, typ in SKILL_SCHEMA.items():\n        if key not in ans:\n            errors.append(f\"нет поля {key}\")\n        elif not isinstance(ans[key], typ):\n            errors.append(f\"поле {key}: неверный тип\")\n    if isinstance(ans.get(\"components\"), list):\n        for comp in ans[\"components\"]:\n            if not isinstance(comp, dict) or \"name\" not in comp or \"weight_g\" not in comp:\n# ...", "note": "Ячейка 11. Фрагмент приведён как пример стиля, а не как готовый код."}}, {"num": 4, "id": "runs", "title": "Прогоны: модели и чаты", "goal": "Прогнать один каталог на двух моделях и в двух чатах, сохранить сырые ответы.", "sections": ["4"], "questions": [{"q": "Какие модели и чаты сравниваем?", "why": "минимум 2×2 даёт сравнимые варианты"}, {"q": "Сколько прогонов на вариант?", "why": "по одному ответу нельзя судить о разбросе"}, {"q": "Где лежат сырые ответы?", "why": "метрики должны воспроизводиться из логов"}, {"q": "Что делаем с ошибками и отказами?", "why": "их нельзя молча выкидывать"}], "actions": ["Создать out/runs/<model>-<chat>-<skill>/.", "Сохранить predictions.csv: dish_id, pred_kcal, components, confidence.", "Записать prompt.md и параметры прогона.", "Отметить отказы и ошибки отдельным статусом."], "checks": ["Один каталог и один промпт для всех вариантов.", "Минимум две модели и два чата.", "Сырые ответы сохранены, а не только агрегаты.", "Ошибки и отказы видны в таблице."], "prompt": "Спланируй прогоны NUT-02: две модели × два чата × два скилла, один каталог и один промпт. Опиши структуру out/runs, имена файлов и как фиксировать отказы.", "badges": [{"kind": "промпт", "label": "план прогонов", "text": "Спланируй 2 модели × 2 чата × 2 скилла: один каталог, один промпт, структура out/runs и учёт отказов."}, {"kind": "тул", "label": "out/runs", "text": "Сырые ответы по вариантам.", "code": "out/runs/<model>-<chat>-<skill>/predictions.csv"}, {"kind": "тул", "label": "nb_guide.py check", "text": "Проверить, что ноутбук читает реальные прогоны.", "code": "python 01.lab/07_skills/41.notebook_guide/scripts/nb_guide.py check notebook.ipynb"}, {"kind": "тул", "label": "pytest", "text": "Тест на разбор ответов и пропуски.", "code": "pytest -q"}], "example": {"section": "4. Прогоны: модели × чаты × скиллы", "code": "RUNS_DIR = OUT / \"runs\"\n\n\ndef _read_runs():\n    files = sorted(RUNS_DIR.glob(\"*/predictions.csv\"))\n    if not files:\n        return None\n    frames = []\n    for path in files:\n        frame = pd.read_csv(path)\n        frame[\"source\"] = path.parent.name\n        frames.append(frame)\n    return pd.concat(frames, ignore_index=True)\n\n\ndef _parse_components(value):\n    if isinstance(value, list):\n        return value\n    if pd.isna(value):\n        return []\n    try:\n        return json.loads(value)\n# ...", "note": "Ячейка 13. Фрагмент приведён как пример стиля, а не как готовый код."}}, {"num": 5, "id": "metrics", "title": "MAE % и Match %", "goal": "Посчитать ошибку калорий и полноту ингредиентов по каждому блюду и варианту.", "sections": ["5"], "questions": [{"q": "MAE % считаем от эталона или от предсказания?", "why": "знаменатель меняет число и вывод"}, {"q": "Match % — это recall или precision?", "why": "лишние ингредиенты и пропуски — разные ошибки"}, {"q": "Как агрегируем по варианту?", "why": "среднее по блюдам и среднее по прогонам различаются"}, {"q": "Какие пороги считаем успехом?", "why": "порог должен быть до результатов"}], "actions": ["Соединить прогоны с эталоном по dish_id.", "Посчитать err_pct, abs_err_pct и match_pct.", "Собрать summary по вариантам: n, MAE %, bias, Match %.", "Построить bar chart MAE и Match."], "checks": ["Метрики посчитаны по каждому блюду, а не только средние.", "Указано n для каждого варианта.", "Match % объяснён как доля найденных ингредиентов.", "Числа в тексте совпадают с metrics.json."], "prompt": "Посчитай MAE % и Match % по каждому блюду и варианту. Объясни знаменатель, покажи n и пороги 15 % / 80 %. Найди блюда, которые ломают среднее.", "badges": [{"kind": "промпт", "label": "метрики", "text": "Посчитай MAE % и Match % по блюдам и вариантам, покажи n и пороги."}, {"kind": "тул", "label": "metrics.json", "text": "Итоговые числа и пороги.", "code": "out/metrics.json"}, {"kind": "тул", "label": "pandas", "text": "Сводка по вариантам и блюдам.", "code": "df.groupby('variant').agg(...)"}, {"kind": "тул", "label": "nb_guide.py build", "text": "Пересобрать гид с примерами.", "code": "python 01.lab/07_skills/41.notebook_guide/scripts/nb_guide.py build notebook.ipynb --out GUIDE.html"}], "example": {"section": "5. MAE % и Match %", "code": "ref = dishes[[\"id\", \"name\", \"kcal\", \"components\"]].rename(\n    columns={\"id\": \"dish_id\", \"kcal\": \"ref_kcal\", \"components\": \"ref_components\"})\ndata = runs.merge(ref, on=\"dish_id\", how=\"left\")\ndata[\"err_pct\"] = (data[\"pred_kcal\"] - data[\"ref_kcal\"]) / data[\"ref_kcal\"]\ndata[\"abs_err_pct\"] = data[\"err_pct\"].abs()\ndata[\"match_pct\"] = [match_pct(p, r) for p, r in\n                      zip(data[\"pred_components\"], data[\"ref_components\"])]\ndata.to_csv(OUT / \"predictions_scored.csv\", index=False)\n\nsummary = (data.groupby([\"variant\", \"model\", \"chat\", \"skill\"])\n           .agg(n=(\"dish_id\", \"count\"),\n                mae_pct=(\"abs_err_pct\", \"mean\"),\n                bias_pct=(\"err_pct\", \"mean\"),\n                match_pct=(\"match_pct\", \"mean\"))\n           .reset_index())\nfor col in (\"mae_pct\", \"bias_pct\", \"match_pct\"):\n    summary[col] = (summary[col] * 100).round(1)\nsummary = summary.sort_values(\"mae_pct\")\ndisplay(summary)\n\nfig, axes = plt.subplots(1, 2, figsize=(12.2, 4.2))\norder = summary[\"variant\"].tolist()\n# ...", "note": "Ячейка 15. Фрагмент приведён как пример стиля, а не как готовый код."}}, {"num": 6, "id": "ttest", "title": "t-критерий", "goal": "Проверить систематическое смещение, а не только среднюю ошибку.", "sections": ["6"], "questions": [{"q": "Какая H₀ и какая альтернатива?", "why": "без H₀ t-критерий не интерпретируется"}, {"q": "Критерий одновыборочный или парный?", "why": "от этого зависит df и вывод"}, {"q": "Какой порог при нашем числе блюд?", "why": "2,074 — только для df ≈ 22"}, {"q": "Что означает p > 0,05?", "why": "это не доказательство отсутствия ошибки"}], "actions": ["Посчитать t и p по err_pct каждого варианта.", "Взять критическое значение по df.", "Добавить доверительный интервал смещения.", "Записать решение: значимо или в пределах шума."], "checks": ["H₀ сформулирована словами.", "Указаны n, df и критическое значение.", "Есть p и интерпретация, а не только t.", "Для 23 блюд порог 2,074; для 8 — пересчитан."], "prompt": "Проверь систематическое смещение: одновыборочный t-критерий по err_pct для каждого варианта, критическое значение по df, доверительный интервал и вывод. Объясни, что p > 0,05 не доказывает отсутствие ошибки.", "badges": [{"kind": "промпт", "label": "t-критерий", "text": "Посчитай t, p, df и CI по err_pct; объясни H₀ и порог."}, {"kind": "тул", "label": "scipy.stats", "text": "Одновыборочный критерий и критические значения.", "code": "stats.ttest_1samp(x, 0)"}, {"kind": "тул", "label": "factors.csv", "text": "Эффекты по схемам A–D.", "code": "out/factors.csv"}, {"kind": "тул", "label": "nb_guide.py check", "text": "Проверить структуру вывода.", "code": "python 01.lab/07_skills/41.notebook_guide/scripts/nb_guide.py check notebook.ipynb"}], "example": {"section": "6. t-критерий", "code": "rows = []\nfor variant, group in data.groupby(\"variant\"):\n    x = group[\"err_pct\"].dropna()\n    t, p = stats.ttest_1samp(x, 0)\n    crit = stats.t.ppf(0.975, len(x) - 1)\n    se = x.std(ddof=1) / np.sqrt(len(x))\n    rows.append({\n        \"variant\": variant, \"n\": len(x), \"bias_pct\": x.mean() * 100,\n        \"ci_low_pct\": (x.mean() - crit * se) * 100,\n        \"ci_high_pct\": (x.mean() + crit * se) * 100,\n        \"t\": t, \"p\": p, \"crit\": crit,\n        \"decision\": \"смещение значимо\" if abs(t) > crit else \"в пределах шума\",\n    })\ntt = pd.DataFrame(rows).sort_values(\"t\", key=lambda s: s.abs(), ascending=False)\ndisplay(tt.round(3))\nprint(\"вариантов со значимым смещением:\", int((tt[\"decision\"] == \"смещение значимо\").sum()))", "note": "Ячейка 19. Фрагмент приведён как пример стиля, а не как готовый код."}}, {"num": 7, "id": "boxplot", "title": "Боксплот и выбросы", "goal": "Показать разброс ошибки и объяснить выбросы, а не удалить их.", "sections": ["7"], "questions": [{"q": "Что по оси Y: ккал или нормированное отклонение?", "why": "нормировка позволяет сравнивать блюда разного веса"}, {"q": "Какое правило считаем выбросом?", "why": "правило должно быть записано до просмотра"}, {"q": "Почему блюдо выпало?", "why": "соус, вес или состав — разные причины"}, {"q": "Что делаем с выбросом?", "why": "удаление без объяснения — скрытая подгонка"}], "actions": ["Построить боксплот err_pct по вариантам.", "Добавить линии 0 и ±15 %.", "Выписать блюда с |err| > 25 %.", "Объяснить каждый выброс и решить, оставлять ли."], "checks": ["На графике подписаны варианты и единицы.", "Указано n для каждого боксплота.", "Выбросы перечислены и объяснены.", "Ни один выброс не удалён молча."], "prompt": "Построй боксплот нормированного отклонения калорий по вариантам, добавь линии 0 и ±15 %, найди выбросы и объясни каждый: состав, вес, соус или ошибка модели.", "badges": [{"kind": "промпт", "label": "боксплот", "text": "Построй боксплот err_pct, найди выбросы и объясни каждый."}, {"kind": "тул", "label": "matplotlib", "text": "Боксплот и линии порогов.", "code": "ax.boxplot(series, positions=...)"}, {"kind": "скилл", "label": "palette", "text": "Единые цвета вариантов и порогов.", "code": "skill: palette — 5–7 HEX проекта"}, {"kind": "тул", "label": "nb_guide.py check", "text": "Проверить, что после графика есть вывод.", "code": "python 01.lab/07_skills/41.notebook_guide/scripts/nb_guide.py check notebook.ipynb"}], "example": {"section": "7. Боксплот и выбросы", "code": "order = (summary.sort_values([\"skill\", \"model\", \"chat\"])[\"variant\"].tolist())\nseries = [data.loc[data[\"variant\"] == v, \"err_pct\"].dropna() * 100 for v in order]\n\nfig, ax = plt.subplots(figsize=(11.2, 4.8))\nbp = ax.boxplot(series, positions=range(len(order)), widths=0.62,\n                patch_artist=True, showfliers=True)\nfor patch, skill in zip(bp[\"boxes\"], summary.sort_values([\"skill\", \"model\", \"chat\"])[\"skill\"]):\n    patch.set_facecolor(PALETTE[\"olive\"] if skill == \"v2\" else PALETTE[\"lav\"])\n    patch.set_alpha(0.75)\nfor median in bp[\"medians\"]:\n    median.set_color(PALETTE[\"ink\"])\nax.axhline(0, color=PALETTE[\"ink\"], lw=0.8)\nax.axhline(15, color=PALETTE[\"magenta\"], ls=\"--\", lw=1)\nax.axhline(-15, color=PALETTE[\"magenta\"], ls=\"--\", lw=1)\nax.set_xticks(range(len(order)), order, rotation=25, ha=\"right\")\nax.set_ylabel(\"отклонение калорий, %\")\nax.set_title(\"Нормированное отклонение по вариантам\")\nax.grid(axis=\"y\", color=\"#EDE7FB\")\nfig.tight_layout()\nsave_fig(fig, \"nut02_boxplot\")\nplt.show()\n\n# ...", "note": "Ячейка 23. Фрагмент приведён как пример стиля, а не как готовый код."}}, {"num": 8, "id": "schemes", "title": "Схемы A–D", "goal": "Сравнить факторы попарно и проверить взаимодействие модели и скилла.", "sections": ["8"], "questions": [{"q": "Какая схема отвечает на главный вопрос?", "why": "схема задаёт, что именно доказывается"}, {"q": "Меняем одну переменную за раз?", "why": "иначе эффект не приписать фактору"}, {"q": "Сравнение парное по блюдам?", "why": "парность убирает разницу сложности блюд"}, {"q": "Эффект больше шума?", "why": "1–2 п.п. при разбросе 5 п.п. — шум"}], "actions": ["Собрать pivot dish_id × variant.", "Посчитать A, B, C и взаимодействие D.", "Проверить парным критерием и сохранить factors.csv.", "Сравнить размер эффекта с разбросом."], "checks": ["В каждой схеме меняется одна переменная.", "Сравнение парное по dish_id.", "У эффекта есть p и размер в п.п.", "Взаимодействие D объяснено словами."], "prompt": "Посчитай схемы A–D: скилл v2−v1, модель A−B, чат web−cli и взаимодействие (A v2−v1)−(B v2−v1). Для каждого — размер эффекта в п.п., парный t-критерий и вывод, больше ли эффект шума.", "badges": [{"kind": "промпт", "label": "схемы A–D", "text": "Посчитай A–D, размер эффекта в п.п., парный t и взаимодействие."}, {"kind": "тул", "label": "factors.csv", "text": "Эффекты по схемам.", "code": "out/factors.csv"}, {"kind": "тул", "label": "scipy", "text": "Парный критерий.", "code": "stats.ttest_rel(a, b)"}, {"kind": "тул", "label": "nb_guide.py check", "text": "Проверить структуру и выводы.", "code": "python 01.lab/07_skills/41.notebook_guide/scripts/nb_guide.py check notebook.ipynb"}], "example": {"section": "8. Схемы A–D", "code": "pivot = data.pivot_table(index=\"dish_id\", columns=\"variant\", values=\"err_pct\")\n\n\ndef paired(a: str, b: str, scheme: str, question: str):\n    if a not in pivot.columns or b not in pivot.columns:\n        return None\n    diff = (pivot[a] - pivot[b]).dropna()\n    if len(diff) < 2:\n        return None\n    t, p = stats.ttest_rel(pivot.loc[diff.index, a], pivot.loc[diff.index, b])\n    return {\"scheme\": scheme, \"contrast\": f\"{a} − {b}\", \"question\": question,\n            \"improvement_pp\": -diff.mean() * 100, \"t\": t, \"p\": p, \"n\": len(diff)}\n\n\nrows = [\n    paired(\"A-cli-v2\", \"A-cli-v1\", \"A\", \"вклад скилла v2\"),\n    paired(\"A-cli-v2\", \"B-cli-v2\", \"B\", \"разница моделей A и B\"),\n    paired(\"A-web-v2\", \"A-cli-v2\", \"C\", \"разница чатов web и cli\"),\n]\n# D: взаимодействие «модель × скилл» по парным разницам\nd_a = (pivot[\"A-cli-v2\"] - pivot[\"A-cli-v1\"]).dropna()\nd_b = (pivot[\"B-cli-v2\"] - pivot[\"B-cli-v1\"]).dropna()\n# ...", "note": "Ячейка 25. Фрагмент приведён как пример стиля, а не как готовый код."}}, {"num": 9, "id": "report", "title": "Вывод, ограничения, сдача", "goal": "Сказать, что сильнее, где шум и где граница применимости.", "sections": ["9"], "questions": [{"q": "Что дало больше: скилл или модель?", "why": "это главный вывод задания"}, {"q": "Чат попал в шум или дал эффект?", "why": "клиент не должен объяснять разницу инструкций"}, {"q": "Какие пороги пройдены?", "why": "MAE ≤ 15 % и Match ≥ 80 % — критерии приёмки"}, {"q": "Где граница применимости?", "why": "8 блюд и фото не заменяют лабораторный анализ"}], "actions": ["Записать metrics.json и factors.csv.", "Собрать report.html с разделом «Традиционный способ».", "Добавить ограничения и что дальше.", "Пройти чек-лист сдачи."], "checks": ["Вывод опирается на числа, а не на впечатление.", "Пороги MAE и Match проверены.", "Есть ограничения и граница применимости.", "Все артефакты на месте."], "prompt": "Собери вывод NUT-02: лучший вариант, вклад скилла и модели, что попало в шум, пороги MAE/Match, ограничения и что дальше. Сверь каждое число с metrics.json и factors.csv.", "badges": [{"kind": "промпт", "label": "вывод и отчёт", "text": "Собери вывод: что сильнее, пороги, шум, ограничения; сверь числа с metrics.json."}, {"kind": "тул", "label": "metrics.json", "text": "Итоговые числа.", "code": "out/metrics.json"}, {"kind": "тул", "label": "report.html", "text": "Отчёт с «Традиционным способом».", "code": "report/report.html"}, {"kind": "скилл", "label": "project_log", "text": "Зафиксировать решение и ограничения в журнале.", "code": "skill: project_log — решение и дата"}], "key": "result", "key_role": "выводы", "key_title": "Что сильнее и где граница", "key_hint": "Скилл, модель или шум; пороги и ограничения", "key_action": "Ответить, что дало больший прирост — скилл, модель или чат, — и где разница в пределах шума. Каждый вывод подкрепить числом, порогом и ограничением.", "example": {"section": "9. Вывод, ограничения, сдача", "code": "best = summary.iloc[0]\nfactor_a = factors.loc[factors[\"scheme\"] == \"A\", \"improvement_pp\"]\nfactor_b = factors.loc[factors[\"scheme\"] == \"B\", \"improvement_pp\"]\nfactor_c = factors.loc[factors[\"scheme\"] == \"C\", \"improvement_pp\"]\n\ndef pp(series) -> str:\n    return f\"{series.iloc[0]:+.1f} п.п.\" if len(series) else \"н/д\"\n\nmetrics = {\n    \"task\": \"NUT-02\",\n    \"generated\": pd.Timestamp.now().strftime(\"%Y-%m-%d %H:%M\"),\n    \"seed\": SEED,\n    \"runs_source\": RUN_SOURCE,\n    \"catalog_size\": int(len(dishes)),\n    \"variants\": int(summary[\"variant\"].nunique()),\n    \"best_variant\": best[\"variant\"],\n    \"best_mae_pct\": float(best[\"mae_pct\"]),\n    \"best_match_pct\": float(best[\"match_pct\"]),\n    \"thresholds\": {\"mae_pct_max\": 15, \"match_pct_min\": 80},\n    \"effects_pp\": {\n        \"skill_v2\": None if not len(factor_a) else float(factor_a.iloc[0]),\n        \"model_a_vs_b\": None if not len(factor_b) else float(factor_b.iloc[0]),\n# ...", "note": "Ячейка 29. Фрагмент приведён как пример стиля, а не как готовый код."}}], "issues": [{"id": "anchors", "title": "У каждого раздела есть якорь", "ok": true, "detail": "все разделы с <a id>", "level": "must"}, {"id": "toc", "title": "Оглавление ведёт на существующие якоря", "ok": true, "detail": "ссылок 11, битых 0", "level": "must"}, {"id": "setup", "title": "Первая кодовая ячейка — setup", "ok": true, "detail": "импорты и корень проекта", "level": "must"}, {"id": "interpretation", "title": "После каждого графика есть текстовая расшифровка", "ok": true, "detail": "все графики объяснены", "level": "should"}, {"id": "cell_size", "title": "Ячейки читаются (кроме setup): код ≤ 120 строк, текст ≤ 60", "ok": true, "detail": "размер в норме", "level": "should"}, {"id": "abs_paths", "title": "Нет абсолютных путей в коде", "ok": true, "detail": "пути относительные", "level": "must"}, {"id": "seed", "title": "Случайность зафиксирована", "ok": true, "detail": "seed/random_state найден", "level": "should"}, {"id": "emoji", "title": "Без эмодзи", "ok": true, "detail": "эмодзи нет", "level": "must"}, {"id": "numbering", "title": "Нумерация разделов последовательная", "ok": true, "detail": "номера уникальны", "level": "should"}, {"id": "conclusions", "title": "Последний раздел — выводы с содержательным текстом", "ok": true, "detail": "раздел 9. Вывод, ограничения, сдача", "level": "should"}]};
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+  });
+}
+
+const DEFAULT_GROUPS = [
+  { id: 'g1', title: 'Подготовка', from: 1, to: 3 },
+  { id: 'g2', title: 'Данные', from: 4, to: 6 },
+  { id: 'g3', title: 'Анализ', from: 7, to: 10 },
+  { id: 'g4', title: 'Завершение', from: 11, to: 12 }
+];
+const GROUPS = (GUIDE.groups && GUIDE.groups.length) ? GUIDE.groups : DEFAULT_GROUPS;
+document.getElementById('top-note').textContent =
+  'notebook_guide · ' + GUIDE.stages.length + ' разделов';
+
+const meta = document.getElementById('meta');
+[
+  ['Этапов', GUIDE.stages.length],
+  ['Ячеек', GUIDE.stats.cells],
+  ['Разделов', GUIDE.stats.sections],
+  ['Графиков', GUIDE.stats.figures],
+  ['Источник', GUIDE.source],
+  ['Дата', GUIDE.date]
+].forEach(function (row) {
+  meta.insertAdjacentHTML('beforeend',
+    '<span>' + esc(row[0]) + ' <b>' + esc(row[1]) + '</b></span>');
+});
+
+document.getElementById('rules').innerHTML = GUIDE.rules.map(function (r) {
+  return '<li>' + esc(r) + '</li>';
+}).join('');
+
+document.getElementById('flags').innerHTML = GUIDE.red_flags.map(function (f) {
+  return '<div class="flag">' + esc(f) + '</div>';
+}).join('');
+
+/* яркий план в начале: 9 шагов, клик ведёт к нужному разделу */
+(function renderPlan() {
+  const host = document.getElementById('plan');
+  const plan = GUIDE.plan;
+  if (!host || !plan || !plan.steps) return;
+  const keyed = GUIDE.stages.filter(function (s) { return s.key; });
+  const goal = keyed.filter(function (s) { return s.key === 'goal'; })[0];
+  const result = keyed.filter(function (s) { return s.key === 'result'; })[0];
+  function keyCard(s) {
+    if (!s) return '';
+    return '<a class="pkey pkey-' + s.key + '" href="#st-' + s.num + '">' +
+      '<span class="pk-kind">ключевой этап · ' + esc(s.key_role) + '</span>' +
+      '<b>' + esc(s.key_title) + '</b><small>' +
+      (s.key_hot ? '<mark class="hot-note">' + esc(s.key_hint) + '</mark>' : esc(s.key_hint)) +
+      '</small></a>';
+  }
+  const method = GUIDE.method;
+  const methodHtml = method && method.steps
+    ? '<details class="plan-method"><summary>' + esc(method.title) +
+      ': от наблюдения до воспроизводимости</summary>' +
+      '<p>' + esc(method.text) + '</p><ol>' + method.steps.map(function (item) {
+        const cut = item.indexOf(' — ');
+        const head = cut > 0 ? item.slice(0, cut) : item;
+        const tail = cut > 0 ? item.slice(cut + 3) : '';
+        return '<li><b>' + esc(head) + '.</b> ' + esc(tail) + '</li>';
+      }).join('') + '</ol></details>'
+    : '';
+  const keyRow = (goal || result)
+    ? '<div class="plan-keys">' + keyCard(goal) +
+      '<span class="pk-arrow" aria-hidden="true">→</span>' + keyCard(result) + '</div>'
+    : '';
+  host.innerHTML =
+    '<div class="plan-head"><div><h2>' + esc(plan.title) + '</h2>' +
+      '<p class="plan-sub">Как начать: выберите шаг или скопируйте стартовый промпт. ' +
+      'План примерный, его можно менять.</p></div>' +
+      '<button class="plan-copy" type="button">Показать стартовый промпт</button></div>' +
+    keyRow +
+    '<div class="plan-grid">' + plan.steps.map(function (st) {
+      const target = st.stages && st.stages.length ? '#st-' + st.stages[0] : '#plan';
+      const hint = st.hot
+        ? '<mark class="hot-note">' + esc(st.hint) + '</mark>'
+        : esc(st.hint);
+      return '<a class="pstep" href="' + target + '"><span class="pn">' + esc(st.num) + '</span>' +
+        '<span><b>' + esc(st.title) + '</b><small>' + hint + '</small></span></a>';
+    }).join('') + '</div>' +
+    '<div class="plan-start"><p><b>Стартовый промпт:</b> ' + esc(plan.start_prompt) + '</p>' +
+      '<button class="plan-copy2" type="button">Показать</button></div>' +
+    methodHtml +
+    '<div class="plan-note">' + esc(plan.note) + '</div>';
+  const dialog = document.getElementById('prompt-dialog');
+  const pdText = document.getElementById('pd-text');
+  const pdCopy = document.getElementById('pd-copy');
+  function openPrompt() {
+    if (!dialog) return;
+    pdText.textContent = plan.start_prompt;
+    if (dialog.showModal) dialog.showModal(); else dialog.setAttribute('open', '');
+  }
+  host.querySelectorAll('.plan-copy, .plan-copy2').forEach(function (btn) {
+    btn.addEventListener('click', openPrompt);
+  });
+  if (dialog) {
+    dialog.querySelector('.pd-close').addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+    pdCopy.addEventListener('click', function () { copyText(plan.start_prompt, pdCopy); });
+  }
+})();
+
+/* меню */
+const side = document.getElementById('side');
+GROUPS.forEach(function (g, gi) {
+  const items = GUIDE.stages.filter(function (s) { return s.num >= g.from && s.num <= g.to; });
+  if (!items.length) return;
+  const d = document.createElement('details');
+  d.open = gi === 0;
+  d.innerHTML = '<summary><span class="arrow"><svg viewBox="0 0 12 12" aria-hidden="true">' +
+    '<path d="M4.4 2.4 7.9 6l-3.5 3.6" fill="none" stroke="#4B3F82" stroke-width="1.8" ' +
+    'stroke-linecap="round" stroke-linejoin="round"/></svg></span>' + esc(g.title) + '</summary>' +
+    items.map(function (s) {
+      return '<a href="#st-' + s.num + '" data-n="' + s.num + '">' + s.num + '. ' + esc(s.title) + '</a>';
+    }).join('');
+  side.appendChild(d);
+});
+side.insertAdjacentHTML('beforeend',
+  '<details><summary><span class="arrow"><svg viewBox="0 0 12 12" aria-hidden="true">' +
+  '<path d="M4.4 2.4 7.9 6l-3.5 3.6" fill="none" stroke="#4B3F82" stroke-width="1.8" ' +
+  'stroke-linecap="round" stroke-linejoin="round"/></svg></span>Чек-лист</summary>' +
+  '<a href="#final" data-n="final">Чек-лист и флаги</a></details>');
+
+/* шаги */
+const host = document.getElementById('stages');
+GUIDE.stages.forEach(function (s, si) {
+  const el = document.createElement('section');
+  el.className = 'stage';
+  el.id = 'st-' + s.num;
+
+  const badgeButtons = (s.badges || []).map(function (b, bi) {
+    return '<button class="bdg" type="button" data-kind="' + esc(b.kind) + '" data-s="' + si +
+      '" data-b="' + bi + '" title="Открыть и скопировать">' + esc(b.label) + '</button>';
+  }).join('');
+
+  const qs = s.questions.map(function (q) {
+    return '<div class="q"><b>' + esc(q.q) + '</b><span>' + esc(q.why) + '</span></div>';
+  }).join('');
+
+  const acts = s.actions.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('');
+  const checks = s.checks.map(function (c, i) {
+    const key = 'nbg:' + GUIDE.slug + ':' + s.num + ':' + i;
+    return '<div class="check" data-key="' + key + '">' +
+      '<input type="checkbox" id="' + key + '"><label for="' + key + '">' + esc(c) + '</label></div>';
+  }).join('');
+
+  const ex = s.example ? (
+    '<details class="ex"><summary>Пример из эталона · раздел ' + esc(s.example.section) + '</summary>' +
+    '<pre><code>' + esc(s.example.code) + '</code></pre>' +
+    (s.example.note ? '<div class="note">' + esc(s.example.note) + '</div>' : '') +
+    '</details>'
+  ) : '';
+
+  const keyBadge = s.key
+    ? '<div class="stage-kicker"><span class="key-badge ' + s.key + '">ключевой этап · ' +
+      esc(s.key_role) + '</span></div>' : '';
+  const keyAction = s.key_action
+    ? '<div class="key-action ' + s.key + '"><b>Главное действие</b><span>' +
+      esc(s.key_action) + '</span></div>' : '';
+
+  el.innerHTML =
+    '<div class="stage-head"><div class="num">' + s.num + '</div><div>' +
+      keyBadge +
+      '<h2>' + esc(s.title) + '</h2><p class="goal">' + esc(s.goal) + '</p>' +
+    '</div></div>' +
+    keyAction +
+    '<div class="grid">' +
+      '<div class="box"><h3>Вопросы, на которые отвечаем</h3>' + qs + '</div>' +
+      '<div class="box"><h3>Что делаем</h3><ol>' + acts + '</ol></div>' +
+    '</div>' +
+    '<div class="box" style="margin-top:14px"><h3>Проверка шага</h3>' + checks + '</div>' +
+    '<div class="badges">' + badgeButtons + '</div>' +
+    '<div class="bdg-panel" hidden></div>' +
+    '<div class="prompt"><div class="ph"><span>Промпт для ассистента</span>' +
+      '<button class="copy" type="button">Копировать</button></div>' +
+      '<p>' + esc(s.prompt) + '</p></div>' + ex;
+
+  host.appendChild(el);
+});
+
+/* отметки и прогресс */
+const boxes = [].slice.call(document.querySelectorAll('.check input'));
+function refresh() {
+  let done = 0;
+  boxes.forEach(function (b) {
+    const row = b.closest('.check');
+    row.classList.toggle('done', b.checked);
+    if (b.checked) done++;
+  });
+  const pct = boxes.length ? Math.round(done * 100 / boxes.length) : 0;
+  document.getElementById('fill').style.width = pct + '%';
+  document.getElementById('pct').textContent = pct + ' %';
+}
+boxes.forEach(function (b) {
+  const key = b.id;
+  try { b.checked = localStorage.getItem(key) === '1'; } catch (e) {}
+  b.addEventListener('change', function () {
+    try { localStorage.setItem(key, b.checked ? '1' : '0'); } catch (e) {}
+    refresh();
+  });
+});
+document.getElementById('reset').addEventListener('click', function () {
+  boxes.forEach(function (b) {
+    b.checked = false;
+    try { localStorage.setItem(b.id, '0'); } catch (e) {}
+  });
+  refresh();
+});
+refresh();
+
+/* копирование: промпты, команды, стартовый промпт */
+function copyText(text, btn) {
+  const done = function () {
+    if (!btn) return;
+    const old = btn.textContent;
+    btn.textContent = 'Скопировано';
+    setTimeout(function () { btn.textContent = old; }, 1300);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, function () { fallback(text, done); });
+  } else { fallback(text, done); }
+}
+document.querySelectorAll('.prompt .copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    copyText(btn.closest('.prompt').querySelector('p').innerText, btn);
+  });
+});
+
+/* бейджи: промпт, скилл, тул */
+document.addEventListener('click', function (e) {
+  const copyBtn = e.target.closest('.copy2');
+  if (copyBtn) {
+    const b = GUIDE.stages[+copyBtn.dataset.s].badges[+copyBtn.dataset.b];
+    copyText(b.code || b.text, copyBtn);
+    return;
+  }
+  const btn = e.target.closest('.bdg');
+  if (!btn) return;
+  const stage = GUIDE.stages[+btn.dataset.s];
+  const b = stage.badges[+btn.dataset.b];
+  const panel = btn.closest('.stage').querySelector('.bdg-panel');
+  const code = b.code ? '<pre><code>' + esc(b.code) + '</code></pre>' : '';
+  panel.innerHTML =
+    '<div class="bdg-head"><b>' + esc(b.kind) + ' · ' + esc(b.label) + '</b>' +
+      '<button class="copy copy2" type="button" data-s="' + btn.dataset.s +
+      '" data-b="' + btn.dataset.b + '">Копировать</button></div>' +
+    '<p>' + esc(b.text) + '</p>' + code;
+  panel.hidden = false;
+  btn.closest('.badges').querySelectorAll('.bdg').forEach(function (x) {
+    x.classList.remove('on');
+  });
+  btn.classList.add('on');
+});
+
+function fallback(t, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta); cb();
+}
+
+/* подсветка активного шага */
+(function () {
+  const links = [].slice.call(document.querySelectorAll('.side a'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  const obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove('on'); });
+      const a = map[en.target.id];
+      if (a) { a.classList.add('on'); a.closest('details').open = true; }
+    });
+  }, { rootMargin: '-70px 0px -60% 0px', threshold: 0 });
+  document.querySelectorAll('.stage, .final').forEach(function (s) { obs.observe(s); });
+})();
+
+/* результаты автопроверки, если переданы */
+if (GUIDE.issues && GUIDE.issues.length) {
+  document.getElementById('issues').innerHTML = GUIDE.issues.map(function (i) {
+    return '<div class="check"><span class="badge ' + (i.ok ? '' : 'warn') + '"><span class="dot"></span>' +
+      (i.ok ? 'пройдено' : 'внимание') + '</span><span style="margin-left:8px">' + esc(i.title) + '</span></div>';
+  }).join('');
+}
+</script>
+</body>
+</html>

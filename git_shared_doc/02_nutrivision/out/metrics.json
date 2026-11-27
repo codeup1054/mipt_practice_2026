@@ -1,0 +1,62 @@
+{
+  "task": "NUT-02",
+  "generated": "2026-11-27 09:06",
+  "seed": 42,
+  "runs_source": "demo",
+  "catalog_size": 8,
+  "variants": 8,
+  "best_variant": "A-web-v2",
+  "best_mae_pct": 2.9,
+  "best_match_pct": 90.4,
+  "thresholds": {
+    "mae_pct_max": 15,
+    "match_pct_min": 80
+  },
+  "effects_pp": {
+    "skill_v2": 6.518145136058773,
+    "model_a_vs_b": 4.140647475318172,
+    "chat_web_vs_cli": -1.6673007966528943
+  },
+  "schemes": [
+    {
+      "scheme": "A",
+      "contrast": "A-cli-v2 − A-cli-v1",
+      "question": "вклад скилла v2",
+      "improvement_pp": 6.518145136058773,
+      "t": -2.912558630923664,
+      "p": 0.022578074629271697,
+      "n": 8,
+      "significant": true
+    },
+    {
+      "scheme": "B",
+      "contrast": "A-cli-v2 − B-cli-v2",
+      "question": "разница моделей A и B",
+      "improvement_pp": 4.140647475318172,
+      "t": -2.0593995564950194,
+      "p": 0.07843458408890382,
+      "n": 8,
+      "significant": false
+    },
+    {
+      "scheme": "C",
+      "contrast": "A-web-v2 − A-cli-v2",
+      "question": "разница чатов web и cli",
+      "improvement_pp": -1.6673007966528943,
+      "t": 1.320623497201097,
+      "p": 0.22816408296427484,
+      "n": 8,
+      "significant": false
+    },
+    {
+      "scheme": "D",
+      "contrast": "(A v2−v1) − (B v2−v1)",
+      "question": "взаимодействие модели и скилла",
+      "improvement_pp": -1.8049835099123328,
+      "t": 0.3122259328679252,
+      "p": 0.7639639849121458,
+      "n": 8,
+      "significant": false
+    }
+  ]
+}

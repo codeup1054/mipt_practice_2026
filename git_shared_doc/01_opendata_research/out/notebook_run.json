@@ -1,0 +1,53 @@
+{
+ "date": "2026-11-25T20:07:33",
+ "python": "3.11.9",
+ "versions": {
+  "pandas": "2.3.3",
+  "numpy": "2.4.6",
+  "sklearn": "1.8.0",
+  "matplotlib": "3.10.8",
+  "pyarrow": "23.0.1"
+ },
+ "seeds": [
+  42,
+  7,
+  2024
+ ],
+ "rows": {
+  "brfss": 457670,
+  "nhanes_cohort": 4748,
+  "ai4fooddb_tables": 29
+ },
+ "effects": {
+  "BRFSS 2024": {
+   "n": 413347,
+   "r": -0.1387336064181156,
+   "p": 0.0
+  },
+  "NHANES 2021–2023": {
+   "n": 3861,
+   "r": -0.14657885126656772,
+   "p": 5.461128707598133e-20
+  }
+ },
+ "meta": {
+  "random_r": -0.13880623530613287,
+  "i2": 0.0
+ },
+ "figures": [
+  "ai4food_tables.png",
+  "block_importance_bmi.png",
+  "brfss_weighted.png",
+  "cluster_profile.png",
+  "clusters_pca.png",
+  "data_overview.png",
+  "forest_activity_bmi.png",
+  "harmonized_effect.png",
+  "model_seeds.png",
+  "nhanes_cohort.png",
+  "passport_shape.png",
+  "pca_olive.png",
+  "pca_violet.png",
+  "qc_missing.png"
+ ]
+}

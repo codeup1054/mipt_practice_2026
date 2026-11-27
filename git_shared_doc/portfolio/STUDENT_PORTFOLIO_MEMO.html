@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Портфолио практики: что предъявить · BMITECH × МФТИ</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTEiIGZpbGw9IiM0QjNGODIiLz48cmVjdCB4PSI5IiB5PSI5IiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHJ4PSI4IiBmaWxsPSJub25lIiBzdHJva2U9IiM5QjhFRDYiIHN0cm9rZS13aWR0aD0iMi4yIi8+PHBhdGggZD0iTTE2IDM0VjE0aDlhNyA3IDAgMCAxIDAgMTRoLTE2IiBmaWxsPSJub25lIiBzdHJva2U9IiNGNTdENjQiIHN0cm9rZS13aWR0aD0iMy40IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48Y2lyY2xlIGN4PSIzNSIgY3k9IjE0IiByPSIzLjIiIGZpbGw9IiNFNjJFN0MiLz48L3N2Zz4=">
+<style>
+  :root {
+    --ink: #241E45; --muted: #6E6690; --line: #E4DDF6; --bg: #F7F4FC;
+    --dark: #2E2657; --violet: #4B3F82; --lav: #9B8ED6; --lav-l: #EDE7FB;
+    --magenta: #E62E7C; --coral: #F57D64; --olive: #6F9C4A; --sage: #B2BE92;
+    --panel: #fff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 14px/1.55 "Segoe UI", Arial, sans-serif; }
+  a { color: var(--violet); }
+  a:hover { color: var(--magenta); }
+  code, .mono { font: 12.5px/1.45 Consolas, monospace; background: var(--lav-l);
+                color: #3A3168; padding: 1px 5px; border-radius: 4px; }
+
+  .top { background: var(--dark); color: #fff; border-bottom: 3px solid var(--magenta); }
+  .top-bar { max-width: 1180px; margin: 0 auto; padding: 10px 20px;
+             display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 9px; color: #fff; text-decoration: none; }
+  .mark { width: 30px; height: 30px; border-radius: 8px; background: var(--coral);
+          color: var(--dark); display: grid; place-items: center; font-weight: 800; }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-text b { font-size: 15px; }
+  .brand-text i { font-style: normal; font-size: 10.5px; color: #C9BEEA; letter-spacing: .04em; }
+  .top nav { margin-left: auto; display: flex; gap: 2px; flex-wrap: wrap; }
+  .top nav a { color: #DCD4F2; text-decoration: none; padding: 6px 10px;
+               border-radius: 7px; font-size: 12.5px; font-weight: 600; }
+  .top nav a:hover { background: #3A3168; color: #fff; }
+  .top nav a.on { background: var(--magenta); color: #fff; }
+
+  .hero { max-width: 1180px; margin: 0 auto; padding: 20px 20px 22px; }
+  .hero .kicker { margin: 0 0 4px; font-size: 9.5px; letter-spacing: .12em;
+                  text-transform: uppercase; color: #C9BEEA; }
+  .hero h1 { margin: 0 0 6px; font-size: 26px; line-height: 1.2; }
+  .hero .lead { margin: 0; max-width: 840px; color: #DCD4F2; font-size: 13.5px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
+  .meta span { background: #3A3168; border: 1px solid #6B5AA8; border-radius: 6px;
+               padding: 3px 9px; font-size: 11.5px; color: #DCD4F2; }
+  .meta b { color: #fff; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 16px 20px 60px; }
+  .lead-card { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--magenta);
+               border-radius: 12px; padding: 14px 18px; margin-bottom: 14px;
+               box-shadow: 0 1px 0 rgba(75,63,130,.04); }
+  .lead-card p { margin: 0 0 6px; }
+  .lead-card p:last-child { margin-bottom: 0; }
+
+  section.card { background: #fff; border: 1px solid var(--line); border-radius: 12px;
+                 padding: 16px; margin-bottom: 14px;
+                 box-shadow: 0 1px 0 rgba(75,63,130,.04); }
+  h2 { margin: 0 0 10px; font-size: 15px; text-transform: uppercase;
+       letter-spacing: .03em; color: var(--dark); }
+  h3 { margin: 12px 0 6px; font-size: 13px; color: var(--violet); }
+  p { margin: 0 0 8px; }
+  ul { margin: 6px 0 0; padding-left: 18px; }
+  li { margin: 3px 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 12px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  @media (max-width: 900px) { .grid3 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 680px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 2px; }
+  .chip { border: 1px solid var(--line); background: #FBF9FE; color: var(--ink);
+          border-radius: 999px; padding: 2px 9px; font-size: 11.5px; }
+  .chip b { color: var(--violet); }
+  .chip.hot { border-color: #F3C6DF; background: #FDF0F7; }
+
+  .badge { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px;
+           padding: 2px 9px; font-size: 9px; font-weight: 800; letter-spacing: .06em;
+           text-transform: uppercase; }
+  .badge.goal { background: #FDF0F7; color: var(--magenta); border: 1px solid #F3C6DF; }
+  .badge.result { background: #F3F7EC; color: #4C6B32; border: 1px solid #D6E3C4; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 6px 0; }
+  th { text-align: left; background: var(--dark); color: #fff; font-size: 10.5px;
+       text-transform: uppercase; letter-spacing: .05em; padding: 7px 9px; }
+  td { padding: 7px 9px; border-top: 1px solid var(--line); vertical-align: top; }
+  tbody tr:nth-child(even) { background: #FBF9FE; }
+
+  .callout { border: 1px solid #F3C6DF; background: #FDF0F7; border-left: 4px solid var(--magenta);
+             border-radius: 9px; padding: 10px 12px; margin: 10px 0; font-size: 13px; }
+  .callout.olive { border-color: #D6E3C4; background: #F3F7EC; border-left-color: var(--olive); }
+  .callout b { color: var(--dark); }
+
+  .formula { background: var(--dark); color: #EDE7FB; border-radius: 9px;
+             padding: 11px 13px; margin: 8px 0; font: 12.5px/1.55 Consolas, monospace;
+             overflow: auto; }
+  .formula b { color: var(--coral); font-weight: 700; }
+
+  .tree { background: #FBF9FE; border: 1px solid var(--line); border-radius: 9px;
+          padding: 10px 12px; margin: 8px 0; font: 12px/1.55 Consolas, monospace;
+          color: #3A3168; overflow: auto; white-space: pre; }
+
+  .bullet { border: 1px solid var(--line); border-left: 3px solid var(--lav);
+            border-radius: 8px; padding: 9px 112px 9px 11px; margin: 7px 0; background: #FBF9FE;
+            font-size: 13px; position: relative; }
+  .bullet .copy { position: absolute; top: 6px; right: 8px; border: 1px solid var(--lav);
+                  background: #fff; color: var(--violet); border-radius: 6px;
+                  padding: 2px 8px; font-size: 10.5px; font-weight: 700; cursor: pointer; }
+  .bullet .copy:hover { background: var(--violet); color: #fff; }
+
+  .check { display: flex; gap: 8px; align-items: flex-start; margin: 5px 0; font-size: 13px; }
+  .check input { margin-top: 3px; accent-color: var(--magenta); }
+  .check.done label { color: var(--muted); text-decoration: line-through; }
+
+  .do-not { border-left: 3px solid var(--coral); background: #FFF4EF;
+            border-radius: 8px; padding: 9px 11px; font-size: 12.5px; margin-top: 8px; }
+
+  .foot { text-align: center; color: var(--muted); font-size: 11.5px; padding: 6px 0 20px; }
+  .print { position: fixed; right: 18px; bottom: 18px; z-index: 30; border: 0;
+           border-radius: 999px; background: var(--magenta); color: #fff;
+           padding: 9px 14px; font: 700 12px "Segoe UI", Arial, sans-serif;
+           cursor: pointer; box-shadow: 0 8px 22px rgba(230,46,124,.3); }
+  .print:hover { background: #C4256A; }
+
+  @media print {
+    .top nav, .print, .copy { display: none !important; }
+    body { background: #fff; }
+    .top { border-bottom-width: 2px; }
+    section.card, .lead-card { break-inside: avoid; box-shadow: none; }
+    .wrap { padding: 0; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-bar">
+    <a class="brand" href="https://practicum.mipt.startupassist.ru/">
+      <span class="mark">П</span>
+      <span class="brand-text"><b>Практикум</b><i>BMITECH × МФТИ</i></span>
+    </a>
+    <nav aria-label="Навигация">
+      <a href="https://practicum.mipt.startupassist.ru/">Главная</a>
+      <a href="https://practicum.mipt.startupassist.ru/limits">Лимиты</a>
+      <a class="on" href="#artifacts">Портфолио</a>
+    </nav>
+  </div>
+  <div class="hero">
+    <p class="kicker">Практика · 16–30 ноября 2026 · 9 участников · 3 команды</p>
+    <h1>Что указать в резюме и портфолио</h1>
+    <p class="lead">Материалы практики позволяют описать не факт участия, а подтверждённые
+      результаты: разработанный агент (agent) и набор навыков (skills), сравнение моделей,
+      расчёт экономики токенов (token economics), исследование по научному методу и
+      воспроизводимое хранилище кода (repository).</p>
+    <div class="meta">
+      <span>Код <b>MIPT-PORTFOLIO</b></span>
+      <span>Формат <b>одна страница</b></span>
+      <span>Разделы <b>8</b></span>
+      <span>Проверка <b>по числам</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="lead-card">
+    <p><b>Основной принцип.</b> В резюме указывают не перечень курсов, а подтверждённые
+      результаты: что сделано, каким показателем измерено и можно ли это воспроизвести.
+      Каждый тезис ниже сопровождается артефактом, который можно предъявить на собеседовании.</p>
+    <p class="small muted">Формула: сильный глагол + объект + результат + единица измерения.
+      Если артефакта нет, тезис не подтверждён. Оригиналы терминов приведены при первом
+      упоминании и в словаре; далее используются русские термины.</p>
+  </div>
+
+  <section class="card" id="terms">
+    <h2>Словарь терминов</h2>
+    <table>
+      <tr><th style="width:24%">Термин</th><th style="width:18%">Оригинал</th><th>Значение</th></tr>
+      <tr><td>Навык</td><td><code>skill</code></td><td>инструкция, описывающая порядок решения класса задач</td></tr>
+      <tr><td>Инструмент автоматизации</td><td><code>tool</code></td><td>скрипт, который выполняет действие вместо повторного написания кода</td></tr>
+      <tr><td>Агент</td><td><code>agent</code></td><td>программа, которая выбирает навыки и инструменты под задачу</td></tr>
+      <tr><td>Промпт</td><td><code>prompt</code></td><td>текст задания, передаваемый модели</td></tr>
+      <tr><td>Токен</td><td><code>token</code></td><td>единица текста, по которой считается стоимость запроса</td></tr>
+      <tr><td>Контекст</td><td><code>context</code></td><td>текст, который модель читает в рамках запроса</td></tr>
+      <tr><td>Кэш</td><td><code>cache</code></td><td>сохранённый результат, который не нужно вычислять повторно</td></tr>
+      <tr><td>Хранилище кода</td><td><code>repository</code></td><td>каталог проекта с историей изменений</td></tr>
+      <tr><td>Базовая линия</td><td><code>baseline</code></td><td>простое решение для сравнения с основным</td></tr>
+      <tr><td>Средняя абсолютная ошибка</td><td><code>MAE</code></td><td>среднее абсолютное отклонение прогноза от эталона</td></tr>
+      <tr><td>Доверительный интервал</td><td><code>CI</code></td><td>диапазон, в котором с заданной вероятностью находится оценка</td></tr>
+      <tr><td>Критерий Стьюдента</td><td><code>t-test</code></td><td>проверка статистической значимости различия или смещения</td></tr>
+    </table>
+  </section>
+
+  <section class="card" id="artifacts">
+    <h2>1. Агент (agent) и команда навыков (skills)</h2>
+    <div class="grid2">
+      <div>
+        <p><b>Определения.</b> Навык (skill) — инструкция, описывающая порядок решения класса
+          задач. Инструмент автоматизации (tool) — скрипт, который агент (agent) запускает
+          вместо повторного написания кода. Набор навыков и инструментов образует переносимую
+          команду: при смене модели или сервиса инструкции сохраняются.</p>
+        <p><b>Что предъявить.</b> Хранилище кода (repository) с папками навыков. У каждого
+          навыка — <code>SKILL.md</code> с описанием, входом, выходом, проверкой и ограничениями.
+          Дополнительно — <code>tools/</code> с инструментами и <code>index.json</code>
+          как упорядоченный каталог.</p>
+        <div class="callout olive">
+          <b>Переносимость.</b> Навыки — текстовые файлы и скрипты. Их можно хранить на съёмном
+          носителе (флешке) и подключать в другом клиенте: инструкция не привязана к конкретной
+          модели. При смене модели команда навыков сохраняется.
+        </div>
+      </div>
+      <div>
+        <h3>Навыки (skills), применявшиеся на практике</h3>
+        <table>
+          <tr><th>Навык (skill)</th><th>Назначение</th></tr>
+          <tr><td><code>project_log</code></td><td>журнал проекта: проблема, варианты, вопросы, план</td></tr>
+          <tr><td><code>notebook_guide</code></td><td>руководство по ноутбуку и автоматическая проверка структуры</td></tr>
+          <tr><td><code>devflow</code></td><td>поиск кода, документов и истории решений</td></tr>
+          <tr><td><code>quiz</code></td><td>опросник для согласования решений</td></tr>
+          <tr><td><code>encoding</code></td><td>контроль кодировок UTF-8, CSV и консоли</td></tr>
+          <tr><td><code>palette</code></td><td>единая палитра графиков и документов</td></tr>
+          <tr><td><code>no_emoji</code></td><td>проверка документов и интерфейсов</td></tr>
+          <tr><td><code>diagrams</code></td><td>схемы Mermaid, PlantUML, SVG</td></tr>
+          <tr><td><code>plan</code></td><td>план работ с проверками</td></tr>
+          <tr><td><code>text_guard</code></td><td>проверка текста на скрытые инструкции</td></tr>
+          <tr><td><code>llm_providers</code></td><td>работа с ключами и провайдерами моделей</td></tr>
+          <tr><td><code>html_doc</code></td><td>документ одним файлом без сетевых зависимостей</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. Приложения с несколькими моделями (multi-model applications)</h2>
+    <div class="grid3">
+      <div>
+        <h3>OpenCode</h3>
+        <p>Среда разработки с интерфейсом командной строки (CLI, command-line interface)
+          и настольным приложением (Desktop). Одна задача может выполняться разными моделями.</p>
+      </div>
+      <div>
+        <h3>Выбор модели</h3>
+        <p>Экономичная модель — для типовых операций и черновиков; более сильная — для
+          архитектуры, сложной отладки и проверки. Модель выбирают по цене ошибки,
+          а не по формальному признаку «самая новая».</p>
+      </div>
+      <div>
+        <h3>Что предъявить</h3>
+        <p>Скрипт или инструкцию: переключение модели, обработка отказа, сохранение журналов
+          и сравнение ответов на едином наборе задач.</p>
+      </div>
+    </div>
+    <div class="chips">
+      <span class="chip"><b>CLI</b> · интерфейс командной строки</span>
+      <span class="chip"><b>Desktop</b> · настольное приложение</span>
+      <span class="chip"><b>API</b> · программный интерфейс</span>
+      <span class="chip"><b>providers</b> · провайдеры моделей</span>
+      <span class="chip"><b>fallback</b> · резервный вариант</span>
+      <span class="chip"><b>retry</b> · повтор запроса</span>
+      <span class="chip"><b>rate limit</b> · ограничение частоты</span>
+      <span class="chip"><b>prompt</b> · текст задания</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3. Экономика токенов (token economics)</h2>
+    <p><b>Токен (token)</b> — единица текста, приблизительно 3–4 символа русского текста.
+      Оплата рассчитывается отдельно за вход (текст, прочитанный моделью) и выход
+      (текст, созданный моделью). Контекст (context) также входит в стоимость: история
+      диалога, полный файл и повтор инструкций оплачиваются повторно.</p>
+    <div class="formula">
+      стоимость = <b>вход_токены</b> × цена_входа / 1 млн
+      + <b>выход_токены</b> × цена_выхода / 1 млн
+    </div>
+    <p class="small muted">Пример при условных $0,15 за 1 млн входных и $0,60 за 1 млн
+      выходных токенов: 1 млн входных + 1 млн выходных = $0,75. Сто задач по 20 тыс.
+      токенов — около $1,50; сокращение контекста в 10 раз — около $0,15.</p>
+    <div class="grid2">
+      <div>
+        <h3>Четыре направления оптимизации</h3>
+        <ul>
+          <li><b>Модель под задачу.</b> Экономичная модель — для типовых операций;
+            более сильная — там, где ошибка дороже токенов.</li>
+          <li><b>Схема вместо полного файла.</b> Пять строк данных и вопрос вместо всего набора.</li>
+          <li><b>Кэш (cache) и стабильный префикс.</b> Повторяющаяся инструкция — в начале,
+            изменяемая часть — в конце.</li>
+          <li><b>Навык (skill) вместо повторного объяснения.</b> Метод сохранён — контекст короче.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Формулировка для резюме</h3>
+        <p>«Рассчитал стоимость одной задачи, а не расход токенов в целом. Сократил контекст
+          с 50 до 5 тыс. токенов, применил кэш (cache) и выбрал модель по цене ошибки:
+          стоимость ответа снизилась примерно в 8 раз без ухудшения качества на контрольном
+          наборе».</p>
+        <div class="callout">
+          <b>Показатель:</b> стоимость одного результата = расход / число принятых артефактов.
+          Его сопоставляют с качеством, а не рассматривают отдельно.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4. Научный метод и оценка эффекта ИИ</h2>
+    <p><b>Последовательность исследования:</b> наблюдение → проблема и цель → проверяемый
+      вопрос → гипотеза → дизайн и выборка → измерение и контроль качества
+      (QC, quality control) → анализ → выводы с ограничениями → воспроизводимость.</p>
+    <div class="chips">
+      <span class="chip">наблюдение</span><span class="chip">проблема</span>
+      <span class="chip">вопрос</span><span class="chip">гипотеза</span>
+      <span class="chip">дизайн</span><span class="chip">данные и QC</span>
+      <span class="chip">анализ</span><span class="chip">выводы</span>
+      <span class="chip">ограничения</span><span class="chip">воспроизводимость</span>
+    </div>
+    <h3>Методики, которые можно указать</h3>
+    <table>
+      <tr><th>Методика</th><th>Что показывает</th><th>Артефакт</th></tr>
+      <tr><td>Описательные статистики, квартили</td><td>структуру и разброс данных</td><td>таблица, график</td></tr>
+      <tr><td>Корреляционный анализ и метод главных компонент (PCA)</td><td>совместную изменчивость показателей</td><td><code>pca_*.png</code></td></tr>
+      <tr><td>Логистическая регрессия, площадь под ROC-кривой (ROC AUC)</td><td>связь признаков с исходом</td><td><code>metrics.json</code></td></tr>
+      <tr><td>Бутстрэп (bootstrap) и 95% доверительный интервал (CI)</td><td>устойчивость оценки</td><td>forest plot</td></tr>
+      <tr><td>Критерий Стьюдента (t-test)</td><td>наличие систематического смещения</td><td>таблица t, p, df</td></tr>
+      <tr><td>Метаанализ, коэффициент гетерогенности I²</td><td>согласованность результатов наборов</td><td>forest plot</td></tr>
+      <tr><td>Кластеризация, коэффициент силуэта (silhouette)</td><td>наличие устойчивых групп</td><td>профили когорт</td></tr>
+      <tr><td>Средняя абсолютная ошибка (MAE), коэффициент совпадения (Match %)</td><td>качество прогноза и распознавания</td><td><code>metrics.json</code></td></tr>
+    </table>
+    <div class="callout olive">
+      <b>Эффект ИИ измеряют, а не описывают.</b> Сравните базовую линию (baseline) и вариант
+      с ИИ по четырём осям: время (часы на задачу), качество (MAE, ROC AUC, Match),
+      стоимость (доллары на результат) и воспроизводимость (запуск одной командой).
+      Разницу приводят в числах и доверительном интервале, а не в формулировке «стало быстрее».
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>5. Хранилище кода (repository) и документация</h2>
+    <div class="grid2">
+      <div>
+        <div class="tree">project/
+├─ README.md          описание и команда запуска
+├─ spec.md            спецификация (specification)
+├─ PASSPORT.md        паспорт данных
+├─ notebooks/         исследование
+├─ src/ или tools/    скрипты и инструменты автоматизации (tools)
+├─ tests/             тесты
+├─ out/               metrics.json, figures, runs
+├─ report/            report.html и presentation
+├─ CHANGELOG.md       журнал изменений
+└─ .gitignore         исключения: данные, ключи, мусор</div>
+      </div>
+      <div>
+        <h3>Что проверяет рецензент</h3>
+        <ul>
+          <li>README отвечает на вопрос «как запустить» за две минуты;</li>
+          <li>числа в отчёте совпадают с <code>metrics.json</code>;</li>
+          <li>у случайности задано зерно генератора (seed), у данных есть паспорт;</li>
+          <li>есть тесты и чек-лист, а не утверждение «работает у меня»;</li>
+          <li>история коммитов объясняет принятые решения;</li>
+          <li>в хранилище нет секретов и персональных данных.</li>
+        </ul>
+        <div class="do-not"><b>Не следует:</b> публиковать ноутбук без README, заменять числа
+          скриншотами, использовать имена вида «финальная_версия_3.ipynb», хранить ключи
+          в коде, оставлять отчёт без ограничений.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>6. Дополнительные компетенции</h2>
+    <div class="grid3">
+      <div><h3>Публичная защита</h3><p>Семь минут; структура «проблема — метод — результат —
+        ограничения». Умение объяснить сложное без упрощения.</p></div>
+      <div><h3>Командные роли</h3><p>Тимлид, ML-специалист, аналитик, проверяющий.
+        Распределение задач, согласование решений, ответственность за результат.</p></div>
+      <div><h3>Данные и лицензии</h3><p>Открытые данные, условия использования, ограничения
+        на публикацию. Часть профессиональной гигиены.</p></div>
+      <div><h3>Этика и ограничения</h3><p>«Не медицинская рекомендация», «связь не равна
+        причинности», «выборка не представляет популяцию». Умение обозначить границу.</p></div>
+      <div><h3>Воспроизводимость</h3><p>Зерно генератора (seed), версии, окружение,
+        одна команда запуска. Результат повторяется на другой машине.</p></div>
+      <div><h3>Экономика результата</h3><p>Стоимость задачи, стоимость артефакта,
+        сравнение моделей по цене и качеству.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>7. Формулировки для резюме</h2>
+    <p class="small muted">Подставьте собственные числа. Каждая формулировка должна
+      подтверждаться артефактом в хранилище кода (repository).</p>
+    <div class="callout">
+      <b>Формула:</b> сильный глагол + объект + результат + единица измерения. Начинайте
+      с глагола совершенного вида: разработал, сократил, внедрил, проверил, представил.
+      Не использовать: занимался, участвовал, помогал.
+    </div>
+    <div class="bullet"><button class="copy" type="button">Копировать</button>
+      Разработал агента (agent) на основе <b>12 навыков (skills)</b> и
+      <b>4 инструментов автоматизации (tools)</b>; сократил подготовку отчёта
+      с <b>N</b> до <b>M</b> часов; инструкции переносятся между моделями.</div>
+    <div class="bullet"><button class="copy" type="button">Копировать</button>
+      Провёл сравнительный анализ <b>2 моделей, 2 клиентов и 2 версий навыка (skill)</b>
+      на едином каталоге: MAE <b>X %</b>, Match <b>Y %</b>, вклад навыка <b>Z п.п.</b>,
+      критерий Стьюдента с учётом числа степеней свободы.</div>
+    <div class="bullet"><button class="copy" type="button">Копировать</button>
+      Сократил стоимость ответа в <b>K раз</b> за счёт схемы вместо полного файла,
+      кэша (cache) и выбора модели по цене ошибки; качество на контрольном наборе
+      не снизилось.</div>
+    <div class="bullet"><button class="copy" type="button">Копировать</button>
+      Провёл исследование от гипотезы до выводов: <b>N</b> наблюдений, <b>M</b> методик,
+      95% доверительный интервал (CI); описаны ограничения и границы применимости.</div>
+    <div class="bullet"><button class="copy" type="button">Копировать</button>
+      Оформил хранилище кода (repository): README, спецификацию (spec), паспорт данных,
+      тесты, metrics.json (метрики), журнал изменений (CHANGELOG); результат
+      воспроизводится одной командой.</div>
+    <div class="bullet"><button class="copy" type="button">Копировать</button>
+      Представил результаты перед <b>N</b> слушателями: проблема, метод, числовой результат,
+      ограничения; без необоснованных утверждений о возможностях ИИ.</div>
+    <p class="small muted" style="margin-top:10px">Формулировки сверены с рекомендациями
+      по резюме: сильный глагол, результат, измеримая единица. Источники:
+      <a href="https://careerdevelopment.princeton.edu/resume-guide/action-oriented-accomplishment-statements">Princeton</a>,
+      <a href="https://www.indeed.com/career-advice/resumes-cover-letters/action-verbs-to-make-your-resume-stand-out">Indeed</a>,
+      <a href="https://t-j.ru/dostizhenia-v-rezume/">Т—Ж</a>.</p>
+  </section>
+
+  <section class="card">
+    <h2>8. Чек-лист портфолио</h2>
+    <div class="check"><input type="checkbox" id="c1"><label for="c1">Есть хранилище кода (repository) с README и командой запуска</label></div>
+    <div class="check"><input type="checkbox" id="c2"><label for="c2">Есть SKILL.md и инструменты автоматизации (tools) с проверкой</label></div>
+    <div class="check"><input type="checkbox" id="c3"><label for="c3">Есть metrics.json, и числа в отчёте совпадают</label></div>
+    <div class="check"><input type="checkbox" id="c4"><label for="c4">Есть spec.md, PASSPORT.md и раздел ограничений</label></div>
+    <div class="check"><input type="checkbox" id="c5"><label for="c5">Есть тесты или чек-лист приёмки</label></div>
+    <div class="check"><input type="checkbox" id="c6"><label for="c6">Есть расчёт стоимости и сравнение моделей</label></div>
+    <div class="check"><input type="checkbox" id="c7"><label for="c7">Есть презентация на семь минут и демонстрация</label></div>
+    <div class="check"><input type="checkbox" id="c8"><label for="c8">Нет ключей, персональных данных и чужих фото без лицензии</label></div>
+    <p class="small muted" style="margin-top:10px">Отметки сохраняются в браузере.
+      Для печати — кнопка справа снизу.</p>
+  </section>
+
+  <div class="foot">Практика BMITECH × МФТИ · памятка для резюме и портфолио · 27.11.2026</div>
+</main>
+
+<button class="print" type="button" onclick="window.print()">Печать</button>
+
+<script>
+function copyText(text, btn) {
+  const done = () => {
+    const old = btn.textContent;
+    btn.textContent = 'Скопировано';
+    setTimeout(() => { btn.textContent = old; }, 1300);
+  };
+  const fallback = (t) => {
+    const ta = document.createElement('textarea');
+    ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta); done();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, () => fallback(text));
+  } else { fallback(text); }
+}
+
+document.querySelectorAll('.bullet .copy').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const text = btn.parentElement.innerText.replace('Копировать', '').trim();
+    copyText(text, btn);
+  });
+});
+
+document.querySelectorAll('.check input').forEach((box) => {
+  const key = 'portfolio:' + box.id;
+  try { box.checked = localStorage.getItem(key) === '1'; } catch (e) {}
+  const row = box.closest('.check');
+  row.classList.toggle('done', box.checked);
+  box.addEventListener('change', () => {
+    try { localStorage.setItem(key, box.checked ? '1' : '0'); } catch (e) {}
+    row.classList.toggle('done', box.checked);
+  });
+});
+</script>
+</body>
+</html>

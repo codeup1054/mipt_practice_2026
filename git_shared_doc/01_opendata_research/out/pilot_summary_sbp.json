@@ -1,0 +1,93 @@
+{
+  "cohort_n": 4611,
+  "target": "BPXOSY1",
+  "r2_by_seed": {
+    "7": 0.1603,
+    "42": 0.1777,
+    "2024": 0.1427
+  },
+  "top_block": "demo",
+  "top_delta_r2": 0.33947,
+  "top_ci": [
+    0.30401,
+    0.38047
+  ],
+  "ci_overlaps": [
+    {
+      "block": "diet",
+      "overlap_with_top": false
+    },
+    {
+      "block": "sleep",
+      "overlap_with_top": false
+    },
+    {
+      "block": "distress",
+      "overlap_with_top": false
+    },
+    {
+      "block": "activity",
+      "overlap_with_top": false
+    }
+  ],
+  "h5_non_overlapping": true,
+  "rank_by_seed": {
+    "7": {
+      "activity": 5.0,
+      "demo": 1.0,
+      "diet": 2.0,
+      "distress": 4.0,
+      "sleep": 3.0
+    },
+    "42": {
+      "activity": 5.0,
+      "demo": 1.0,
+      "diet": 2.0,
+      "distress": 4.0,
+      "sleep": 3.0
+    },
+    "2024": {
+      "activity": 5.0,
+      "demo": 1.0,
+      "diet": 2.0,
+      "distress": 3.0,
+      "sleep": 4.0
+    }
+  },
+  "h7_rank_stable": false,
+  "h8_top1_top2_share": [
+    {
+      "block": "demo",
+      "top1": "RIDAGEYR",
+      "top1_share": 86.1,
+      "top2_share": 97.9
+    },
+    {
+      "block": "diet",
+      "top1": "carb_pct",
+      "top1_share": 242.4,
+      "top2_share": 482.8
+    },
+    {
+      "block": "sleep",
+      "top1": "sleep_weekday",
+      "top1_share": 138.7,
+      "top2_share": 126.9
+    },
+    {
+      "block": "activity",
+      "top1": "mod_min_wk",
+      "top1_share": 152.0,
+      "top2_share": 281.1
+    },
+    {
+      "block": "distress",
+      "top1": "phq9",
+      "top1_share": 100.0,
+      "top2_share": 100.0
+    }
+  ],
+  "h6_sign_agreement": "13/21",
+  "h6_sign_agreement_significant": "6/7",
+  "seconds": 24.2
+}

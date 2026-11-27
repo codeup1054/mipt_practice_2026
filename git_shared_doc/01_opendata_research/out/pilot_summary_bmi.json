@@ -1,0 +1,93 @@
+{
+  "cohort_n": 4611,
+  "target": "BMXBMI",
+  "r2_by_seed": {
+    "7": 0.0662,
+    "42": 0.0945,
+    "2024": 0.055
+  },
+  "top_block": "activity",
+  "top_delta_r2": 0.07491,
+  "top_ci": [
+    0.04954,
+    0.09593
+  ],
+  "ci_overlaps": [
+    {
+      "block": "demo",
+      "overlap_with_top": true
+    },
+    {
+      "block": "diet",
+      "overlap_with_top": false
+    },
+    {
+      "block": "sleep",
+      "overlap_with_top": false
+    },
+    {
+      "block": "distress",
+      "overlap_with_top": false
+    }
+  ],
+  "h5_non_overlapping": false,
+  "rank_by_seed": {
+    "7": {
+      "activity": 1.0,
+      "demo": 2.0,
+      "diet": 3.0,
+      "distress": 4.0,
+      "sleep": 5.0
+    },
+    "42": {
+      "activity": 1.0,
+      "demo": 2.0,
+      "diet": 3.0,
+      "distress": 5.0,
+      "sleep": 4.0
+    },
+    "2024": {
+      "activity": 1.0,
+      "demo": 2.0,
+      "diet": 3.0,
+      "distress": 4.0,
+      "sleep": 5.0
+    }
+  },
+  "h7_rank_stable": false,
+  "h8_top1_top2_share": [
+    {
+      "block": "demo",
+      "top1": "educ",
+      "top1_share": 34.4,
+      "top2_share": 68.2
+    },
+    {
+      "block": "diet",
+      "top1": "water_per1000",
+      "top1_share": 29.2,
+      "top2_share": 58.2
+    },
+    {
+      "block": "sleep",
+      "top1": "sleep_midpoint",
+      "top1_share": 59.4,
+      "top2_share": 93.1
+    },
+    {
+      "block": "activity",
+      "top1": "mod_min_wk",
+      "top1_share": 49.1,
+      "top2_share": 82.3
+    },
+    {
+      "block": "distress",
+      "top1": "phq9",
+      "top1_share": 100.0,
+      "top2_share": 100.0
+    }
+  ],
+  "h6_sign_agreement": "17/21",
+  "h6_sign_agreement_significant": "13/14",
+  "seconds": 24.9
+}

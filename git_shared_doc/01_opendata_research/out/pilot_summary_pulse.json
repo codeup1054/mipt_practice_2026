@@ -1,0 +1,93 @@
+{
+  "cohort_n": 4611,
+  "target": "BPXOPLS1",
+  "r2_by_seed": {
+    "7": 0.0841,
+    "42": 0.0508,
+    "2024": 0.0502
+  },
+  "top_block": "demo",
+  "top_delta_r2": 0.06559,
+  "top_ci": [
+    0.04479,
+    0.08658
+  ],
+  "ci_overlaps": [
+    {
+      "block": "activity",
+      "overlap_with_top": false
+    },
+    {
+      "block": "diet",
+      "overlap_with_top": false
+    },
+    {
+      "block": "distress",
+      "overlap_with_top": false
+    },
+    {
+      "block": "sleep",
+      "overlap_with_top": false
+    }
+  ],
+  "h5_non_overlapping": true,
+  "rank_by_seed": {
+    "7": {
+      "activity": 2.0,
+      "demo": 1.0,
+      "diet": 3.0,
+      "distress": 5.0,
+      "sleep": 4.0
+    },
+    "42": {
+      "activity": 2.0,
+      "demo": 1.0,
+      "diet": 3.0,
+      "distress": 4.0,
+      "sleep": 5.0
+    },
+    "2024": {
+      "activity": 2.0,
+      "demo": 1.0,
+      "diet": 4.0,
+      "distress": 5.0,
+      "sleep": 3.0
+    }
+  },
+  "h7_rank_stable": false,
+  "h8_top1_top2_share": [
+    {
+      "block": "demo",
+      "top1": "RIDAGEYR",
+      "top1_share": 58.2,
+      "top2_share": 75.4
+    },
+    {
+      "block": "diet",
+      "top1": "fiber_per1000",
+      "top1_share": 1116.8,
+      "top2_share": 1672.7
+    },
+    {
+      "block": "sleep",
+      "top1": "sleep_midpoint",
+      "top1_share": 0.0,
+      "top2_share": 0.0
+    },
+    {
+      "block": "activity",
+      "top1": "vig_min_wk",
+      "top1_share": 67.1,
+      "top2_share": 101.6
+    },
+    {
+      "block": "distress",
+      "top1": "phq9",
+      "top1_share": 100.0,
+      "top2_share": 100.0
+    }
+  ],
+  "h6_sign_agreement": "15/21",
+  "h6_sign_agreement_significant": "11/13",
+  "seconds": 23.9
+}
